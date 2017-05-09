@@ -7,7 +7,7 @@ namespace nat20sDD
     public class Game
     {
 
-        List<Hero> heroes;
+        public List<Hero> heroes;
         const int NUM_HEROES = 4;
         Battle battle;
         public Game()
