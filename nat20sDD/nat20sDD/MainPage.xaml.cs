@@ -34,7 +34,15 @@ namespace nat20sDD
 
             teamSelectBtn.Clicked += delegate
             {
-                Navigation.PushModalAsync(new TeamPage());
+				Hero hero1 = new Hero();
+				hero1.setName("Hero 1");
+				Hero hero2 = new Hero();
+				hero2.setName("Hero 2");
+				Hero hero3 = new Hero();
+				hero3.setName("Hero 3");
+				Hero hero4 = new Hero();
+				hero4.setName("Hero 4");
+                Navigation.PushModalAsync(new TeamPage(hero1, hero2, hero3, hero4));
             };
 
             charButton.Clicked += delegate
@@ -53,7 +61,7 @@ namespace nat20sDD
             {
                 Padding = 30,
                 Spacing = 10,
-                Children = { title, teamSelectBtn, charButton, monsterButton }
+                Children = { title, teamSelectBtn, autoPlayBtn, charButton, monsterButton }
             };
         }
     }

@@ -5,130 +5,94 @@ using Xamarin.Forms;
 
 namespace nat20sDD
 {
-    public class TeamPage : ContentPage
-    {
+	public class TeamPage : ContentPage
+	{
+		public TeamPage(Hero hero1, Hero hero2, Hero hero3, Hero hero4)
+		{
 
+			var title = new Label
+			{
+				Text = "Team Detail Page",
+				FontSize = 28,
+			};
+			
+			var firstHero = new Button
+			{
+				Text = hero1.getName(),
+				FontSize = 28,
+				HorizontalOptions = LayoutOptions.Center,
+			};
 
+			var secondHero = new Button
+			{
+				Text = hero2.getName(),
+				FontSize = 28,
+				HorizontalOptions = LayoutOptions.Center,
+			};
 
-        public TeamPage()
-        {
+			var thirdHero = new Button
+			{
+				Text = hero3.getName(),
+				FontSize = 28,
+				HorizontalOptions = LayoutOptions.Center,
+			};
 
-            var title = new Label
-            {
-                Text = "Team Detail Page",
-                FontSize = 28,
-            };
+			var fourthHero = new Button
+			{
+				Text = hero4.getName(),
+				FontSize = 28,
+				HorizontalOptions = LayoutOptions.Center,
+			};
 
-            /*
-            var name = new Label
-            {
-                Text = C.getName(),
-                FontSize = 20,
-                HorizontalOptions = LayoutOptions.Center,
-            };
-            var lvl = new Label
-            {
-                Text = "Level" + C.getLvl(),
-                FontSize = 18,
-            };
+			firstHero.Clicked += delegate
+			{
+				Navigation.PushModalAsync(new EditCharPage(hero1));
+			};
 
-            var lvlProg = new ProgressBar
-            {
-                Progress = .3,
-            };
-            */
+			secondHero.Clicked += delegate
+			{
+				Navigation.PushModalAsync(new EditCharPage(hero2));
+			};
 
-            /*
-            StackLayout level = new StackLayout
-            {
-                Children = { lvl, lvlProg },
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-            };
-            */
+			thirdHero.Clicked += delegate
+			{
+				Navigation.PushModalAsync(new EditCharPage(hero3));
+			};
 
-            /*
-            var health = new Label
-            {
-                Text = "Hp - " + C.getHP(),
-            };
+			fourthHero.Clicked += delegate
+			{
+				Navigation.PushModalAsync(new EditCharPage(hero4));
+			};
 
-            var str = new Label
-            {
-                Text = "Str- " + +C.getStr(),
-            };
+			var autoPlayBtn = new Button { Text = "Auto-Play Game" };
+			var firstBattle = new Button { Text = "First Battle" };
 
-            var spd = new Label
-            {
-                Text = "Spd - 10"
-            };
+			firstBattle.Clicked += delegate
+			{
+				List<Hero> heroes = new List<Hero>();
+				heroes.Add(hero1);
+				heroes.Add(hero2);
+				heroes.Add(hero3);
+				heroes.Add(hero4);
 
+				// Navigate to battle page
+				// Navigation.PushModalAsync(new BattlePage(heroes));
+				// - Battle battle = new Battle(heroes);
+			};
 
-            var def = new Label
-            {
-                Text = "Def - 10"
-            };
+			Content = new StackLayout
+			{
+				Children = { title, firstHero, secondHero, thirdHero, fourthHero, autoPlayBtn, firstBattle },
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				Padding = 30,
+				Spacing = 20
+			};
+		}
 
-            var dex = new Label
-            {
-                Text = "Dex - 10"
-            };
-
-    */
-
-            /*
-            StackLayout stats = new StackLayout
-            {
-                Children = { health, str, spd, def, dex },
-                VerticalOptions = LayoutOptions.EndAndExpand,
-            };
-            */
-
-            /*
-            var charPic = new Image
-            {
-                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
-                WidthRequest = 100,
-                HeightRequest = 200,
-                VerticalOptions = LayoutOptions.Center,
-            };
-
-            StackLayout mid = new StackLayout
-            {
-                Children = { stats, charPic },
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-            };
-
-            var score = new Label
-            {
-                Text = "Score - 10,495",
-                FontSize = 20,
-                FontAttributes = FontAttributes.Bold,
-                HorizontalOptions = LayoutOptions.Center,
-            };
-            
-            */
-
-            /*
-            var invButton = new Button { Text = "Show Inventory", VerticalOptions = LayoutOptions.EndAndExpand, HorizontalOptions = LayoutOptions.Center, };
-
-            invButton.Clicked += delegate
-            {
-                Navigation.PushModalAsync(new MainPage());
-            };
-
-            Content = new StackLayout
-            {
-                Children = { title, name, level, mid, score, invButton },
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-
-            };
-            */
-        }
-
-
-
-
-    }
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			
+		}
+	}
 }
