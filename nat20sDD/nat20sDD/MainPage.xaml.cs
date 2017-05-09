@@ -49,7 +49,7 @@ namespace nat20sDD
             {
                 Game game1 = new Game();
 
-                Navigation.PushModalAsync(new GameResultPage());
+                Navigation.PushModalAsync(new GameResultPage(game1));
             };
 
             charButton.Clicked += delegate

@@ -11,7 +11,7 @@ namespace nat20sDD
         const int NUM_HEROES = 4;
         Battle battle;
         int battleCount;
-        int totalScore;
+        public int totalScore;
         public Game()
         {
             heroes = initHeroes();
