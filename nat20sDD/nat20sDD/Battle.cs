@@ -17,18 +17,32 @@ namespace nat20sDD
         public Battle(List<Hero> characters)
         {
             heroes = characters;
-            for (int i = 0; i < NUM_MONSTERS; i++)
-            {
-                Monster m = new Monster();
-                monsters.Add(m);
-            }
+            monsters = initMonsters();
 
         }
 
         public void attack(Unit a, Unit d)
         {
-            d.setHP(d.getHP() - a.getStr());
+            int damage = a.getStr();
+            d.setHP(d.getHP() - damage);
+            Console.WriteLine(a.getName() + " did " + damage + " points of damage to " + d.getName());
         }
 
+        public List<Monster> initMonsters()
+        {
+            List<Monster> monsterTeam = new List<Monster>();
+            for (int i = 0; i < NUM_MONSTERS; i++)
+            {
+                Monster m = new Monster();
+                m.setName("Ugly Monster " + (i + 1));
+                m.setHP(75);
+                m.setStr(8);
+                m.setDex(6);
+                m.setDef(4);
+                m.setDifficulty(1);
+                monsterTeam.Add(m);
+            }
+            return monsterTeam;
+        }
     }
 }
