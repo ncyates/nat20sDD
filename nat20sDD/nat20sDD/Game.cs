@@ -10,12 +10,17 @@ namespace nat20sDD
         List<Hero> heroes;
         const int NUM_HEROES = 4;
         Battle battle;
+        int battleCount;
+        int totalScore;
         public Game()
         {
             heroes = initHeroes();
             utilityOutput(); // to check hero initialization
+            battleCount = 0;
+            totalScore = 0;
             play();
-            
+            Console.WriteLine("Heroes fought " + battleCount + " battles.");
+            Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
         }
 
 
@@ -42,6 +47,7 @@ namespace nat20sDD
             while (heroTeamLives())
             {
                 battle = new Battle(heroes);
+                battleCount++;
                 while(heroTeamLives() && monsterTeamLives(battle.monsters))
                 {
                     for (int i = 0; i < NUM_HEROES; i++)
@@ -51,6 +57,9 @@ namespace nat20sDD
                             int target = findTargetMonster(battle.monsters);
                             if (target == -1)
                             {
+                                Console.WriteLine("\n\n\nAll the monsters are dead!");
+                                sumScores();
+                                Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
                                 break;
                             }
                             battle.attack(heroes[i], battle.monsters[target]);
@@ -60,6 +69,8 @@ namespace nat20sDD
                             int target = findTargetHero();
                             if (target == -1)
                             {
+                                Console.WriteLine("n\n\nAll the heroes are dead.");
+                                sumScores();
                                 break;
                             }
                             battle.attack(battle.monsters[i], heroes[target]);
@@ -142,5 +153,13 @@ namespace nat20sDD
             return -1;
         }
 
+        public void sumScores()
+        {
+            foreach(Hero h in heroes)
+            {
+                totalScore += h.getScore();
+            }
+        }
+        
     }
 }
