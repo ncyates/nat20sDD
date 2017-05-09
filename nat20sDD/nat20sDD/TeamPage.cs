@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace nat20sDD
 {
-    class TeamPage : ContentPage
+    public class TeamPage : ContentPage
     {
 
 
