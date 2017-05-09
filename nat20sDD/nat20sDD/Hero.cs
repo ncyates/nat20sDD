@@ -10,7 +10,7 @@ namespace nat20sDD
         private int lvl;
         private int exp;
         private int score;
-        public Character() : base()
+        public Hero() : base()
         {
             lvl = 0;
             exp = 0;
