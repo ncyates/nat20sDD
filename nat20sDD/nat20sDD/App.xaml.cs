@@ -11,7 +11,7 @@ namespace nat20sDD
 	{
 		public App ()
 		{
-			InitializeComponent();
+			//InitializeComponent();
 
 			MainPage = new nat20sDD.MainPage();
 		}

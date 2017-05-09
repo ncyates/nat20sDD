@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace nat20sDD
 {
-    class Item
+    public class Item
     {
         public string name { get; set; }
         public int hp { get; set; }

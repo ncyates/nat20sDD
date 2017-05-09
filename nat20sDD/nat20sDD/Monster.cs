@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace nat20sDD
 {
-    class Monster :Unit
+    public class Monster :Unit
     {
         //additional fields
         private int pointVal;

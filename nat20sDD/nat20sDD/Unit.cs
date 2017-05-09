@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace nat20sDD
 {
-    class Unit
+    public class Unit
     {
         private string name;
         private int hp;
@@ -80,7 +81,7 @@ namespace nat20sDD
         }
 
 
-        //checks if unit has 0 hp
+        //returns true if unit's hp is below 0
         public bool isDead()
         {
             return (hp < 1);

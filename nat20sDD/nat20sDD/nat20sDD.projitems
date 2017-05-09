@@ -13,7 +13,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Battle.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Character.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TeamPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CharPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">

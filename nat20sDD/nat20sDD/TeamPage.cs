@@ -5,20 +5,21 @@ using Xamarin.Forms;
 
 namespace nat20sDD
 {
-    class CharPage : ContentPage
+    class TeamPage : ContentPage
     {
 
 
 
-        public CharPage(Hero C)
+        public TeamPage()
         {
 
             var title = new Label
             {
-                Text = "Character Detail Page",
+                Text = "Team Detail Page",
                 FontSize = 28,
             };
 
+            /*
             var name = new Label
             {
                 Text = C.getName(),
@@ -35,16 +36,18 @@ namespace nat20sDD
             {
                 Progress = .3,
             };
+            */
 
+            /*
             StackLayout level = new StackLayout
             {
                 Children = { lvl, lvlProg },
                 Orientation = StackOrientation.Horizontal,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
             };
+            */
 
-
-
+            /*
             var health = new Label
             {
                 Text = "Hp - " + C.getHP(),
@@ -71,12 +74,17 @@ namespace nat20sDD
                 Text = "Dex - 10"
             };
 
+    */
+
+            /*
             StackLayout stats = new StackLayout
             {
                 Children = { health, str, spd, def, dex },
                 VerticalOptions = LayoutOptions.EndAndExpand,
             };
+            */
 
+            /*
             var charPic = new Image
             {
                 Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
@@ -99,6 +107,10 @@ namespace nat20sDD
                 FontAttributes = FontAttributes.Bold,
                 HorizontalOptions = LayoutOptions.Center,
             };
+            
+            */
+
+            /*
             var invButton = new Button { Text = "Show Inventory", VerticalOptions = LayoutOptions.EndAndExpand, HorizontalOptions = LayoutOptions.Center, };
 
             invButton.Clicked += delegate
@@ -112,7 +124,7 @@ namespace nat20sDD
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
 
             };
-
+            */
         }
 
 
