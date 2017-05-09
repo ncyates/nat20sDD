@@ -9,7 +9,7 @@ namespace nat20sDD
         //additional fields
         private int lvl;
         private int exp;
-        private int score;
+        //private int score;
 
         public Hero() : base()
         {
@@ -36,10 +36,7 @@ namespace nat20sDD
         {
             return exp;
         }
-        public int getScore()
-        {
-            return score;
-        }
+
 
         public void setlvl(int l)
         {
@@ -49,10 +46,7 @@ namespace nat20sDD
         {
             exp = e;
         }
-        public void setScore(int s)
-        {
-            score = s;
-        }
+
 
 
 

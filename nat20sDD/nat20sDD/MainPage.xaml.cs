@@ -57,6 +57,11 @@ namespace nat20sDD
                 Navigation.PushModalAsync(new CharPage(dude));
             };
 
+            autoPlayBtn.Clicked += delegate
+            {
+                Game game = new Game();
+            };
+
             var monsterButton = new Button { Text = "Monster Detail Prototype" };
 
             monsterButton.Clicked += delegate

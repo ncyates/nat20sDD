@@ -26,6 +26,14 @@ namespace nat20sDD
             int damage = a.getStr();
             d.setHP(d.getHP() - damage);
             Console.WriteLine(a.getName() + " did " + damage + " points of damage to " + d.getName());
+            int points = damage * 100;
+            if (a.isGood)
+            {
+                a.setScore((a.getScore() + points));
+                Console.WriteLine(a.getName() + " scored " + points + " points!");
+            }
+            
+            
         }
 
         public List<Monster> initMonsters()
