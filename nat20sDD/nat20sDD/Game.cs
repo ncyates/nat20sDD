@@ -7,6 +7,7 @@ namespace nat20sDD
     public class Game
     {
 
+        List<Hero> heroRoster;
         List<Hero> heroes;
         const int NUM_HEROES = 4;
         Battle battle;
@@ -18,7 +19,7 @@ namespace nat20sDD
             utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
-            play();
+            //play();
             Console.WriteLine("Heroes fought " + battleCount + " battles.");
             Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
         }
@@ -40,6 +41,32 @@ namespace nat20sDD
                 team.Add(h);                
             }
             return team;
+        }
+
+        //function to create heroes team
+        public List<Hero> initHeroRoster()
+        {
+            List<Hero> team = new List<Hero>();
+            for (int i = 0; i < NUM_HEROES; i++)
+            {
+                Hero h = new Hero();
+                h.setName("Strong dude " + (i + 1));
+                h.setHP(100);
+                h.setStr(10);
+                h.setDex(10);
+                h.setDef(10);
+                h.setlvl(1);
+                team.Add(h);
+            }
+            return team;
+        }
+
+
+        public int roll5()
+        {
+            Random random = new Random();
+            return random.Next(5, 10);
+            
         }
 
         public void play()
@@ -75,9 +102,7 @@ namespace nat20sDD
                             }
                             battle.attack(battle.monsters[i], heroes[target]);
                         }
-                    }
-
-                
+                    }                
                 }
             }
         }
