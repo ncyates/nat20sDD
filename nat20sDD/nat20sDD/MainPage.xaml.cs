@@ -45,6 +45,13 @@ namespace nat20sDD
                 Navigation.PushModalAsync(new TeamPage(hero1, hero2, hero3, hero4));
             };
 
+            autoPlayBtn.Clicked += delegate
+            {
+                Game game1 = new Game();
+
+                Navigation.PushModalAsync(new BattleResultPage());
+            };
+
             charButton.Clicked += delegate
             {
                 Navigation.PushModalAsync(new CharPage(dude));
