@@ -10,6 +10,7 @@ namespace nat20sDD
         private int lvl;
         private int exp;
         private int score;
+
         public Hero() : base()
         {
             lvl = 0;
@@ -18,7 +19,16 @@ namespace nat20sDD
             isGood = true;
         }
 
-        public int getLvl()
+		public Hero(string name, int hp, int strength, int speed, int defense, int dexterity)
+			: base(name, hp, strength, speed, defense, dexterity)
+		{
+			lvl = 0;
+			exp = 0;
+			score = 0;
+			isGood = true;
+		}
+
+		public int getLvl()
         {
             return lvl;
         }

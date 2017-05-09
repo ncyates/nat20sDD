@@ -16,16 +16,20 @@ namespace nat20sDD
         protected List<Item> inventory;
         protected bool isGood;
 
-        public Unit()
+        public Unit() : this("blank", 10, 1, 1, 1, 1)
         {
-            name = "blank";
-            hp = 10;
-            strength = 1;
-            speed = 1;
-            defense = 1;
-            dexterity = 1;
-            inventory = new List<Item>();
         }
+
+		public Unit(string name, int hp, int strength, int speed, int defense, int dexterity)
+		{
+			this.name = name;
+			this.hp = hp;
+			this.strength = strength;
+			this.speed = speed;
+			this.defense = defense;
+			this.dexterity = dexterity;
+			inventory = new List<Item>();
+		}
 
         public string getName()
         {
@@ -70,8 +74,11 @@ namespace nat20sDD
         {
             strength = s;
         }
-
-        public void setDef(int d)
+		public void setSpd(int s)
+		{
+			speed = s;
+		}
+		public void setDef(int d)
         {
             defense = d;
         }
