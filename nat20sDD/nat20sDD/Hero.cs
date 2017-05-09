@@ -4,7 +4,7 @@ using System.Text;
 
 namespace nat20sDD
 {
-    class Character : Unit
+    class Hero : Unit
     {
         //additional fields
         private int lvl;
