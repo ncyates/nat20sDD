@@ -14,7 +14,8 @@ namespace nat20sDD
         private int defense;
         private int dexterity;
         protected List<Item> inventory;
-        protected bool isGood;
+        private int score;
+        public bool isGood;
 
         public Unit() : this("blank", 10, 1, 1, 1, 1)
         {
@@ -28,6 +29,7 @@ namespace nat20sDD
 			this.speed = speed;
 			this.defense = defense;
 			this.dexterity = dexterity;
+            this.score = 0;
 			inventory = new List<Item>();
 		}
 
@@ -60,6 +62,15 @@ namespace nat20sDD
             return inventory;
         }
 
+        public void setScore(int s)
+        {
+            score = s;
+        }
+
+        public int getScore()
+        {
+            return score;
+        }
         //Set methods
         public void setName(string n)
         {
