@@ -43,7 +43,9 @@ namespace nat20sDD
             autoPlayBtn.Clicked += delegate
             {
                 Game game = new Game();
-               	game.play();
+                game.play();
+                Navigation.PushModalAsync(new GameResultPage(game));
+               	
             };
 
            

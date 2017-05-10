@@ -411,6 +411,7 @@ namespace nat20sDD
 			};
 
 			resultsButton.Clicked += delegate {
+                Navigation.PushModalAsync(new GameResultPage(game));
 			};
 
 

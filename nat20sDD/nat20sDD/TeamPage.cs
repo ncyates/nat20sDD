@@ -78,6 +78,13 @@ namespace nat20sDD
 				// - Battle battle = new Battle(heroes);
 			};
 
+            autoPlayBtn.Clicked += delegate
+            {
+                
+                game.play();
+                Navigation.PushModalAsync(new GameResultPage(game));
+            };
+
 			Content = new StackLayout
 			{
 				Children = { title, firstHero, secondHero, thirdHero, fourthHero, autoPlayBtn, firstBattle },

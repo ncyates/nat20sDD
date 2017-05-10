@@ -49,13 +49,15 @@ namespace nat20sDD
                 Text = game.heroes[3].getName().ToString() + ": " + game.heroes[3].getScore().ToString()
             };
 
-            var autoPlayBtn = new Button { Text = "Auto-Play Game" };
+            //var autoPlayBtn = new Button { Text = "Auto-Play Game" };
+            var autoPlayBtn = new Button { Text = "Return Home" };
 
             autoPlayBtn.Clicked += delegate
             {
                 Game game1 = new Game();
 
-                Navigation.PushModalAsync(new GameResultPage(game1));
+                //Navigation.PushModalAsync(new GameResultPage(game1));
+                Navigation.PushModalAsync(new MainPage());
             };
 
             var charPic1 = new Image
