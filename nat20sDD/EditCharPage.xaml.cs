@@ -12,7 +12,7 @@ namespace nat20sDD
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditCharPage : ContentPage
 	{
-		public EditCharPage (Hero hero)
+		public EditCharPage (Game game, int hero)
 		{
 			// InitializeComponent ();
 
@@ -25,37 +25,37 @@ namespace nat20sDD
 			var heroName = new Entry()
 			{
 				Placeholder = "Name",
-				Text = hero.getName()
+				Text = game.heroes[hero].getName()
 			};
 
 			var heroHP = new Entry()
 			{
 				Placeholder = "HP",
-				Text = hero.getHP().ToString()
+				Text = game.heroes[hero].getHP().ToString()
 			};
 
 			var heroStr = new Entry()
 			{
 				Placeholder = "Strength",
-				Text = hero.getStr().ToString()
+				Text = game.heroes[hero].getStr().ToString()
 			};
 
 			var heroSpd = new Entry()
 			{
 				Placeholder = "Speed",
-				Text = hero.getSpd().ToString()
+				Text = game.heroes[hero].getSpd().ToString()
 			};
 
 			var heroDef = new Entry()
 			{
 				Placeholder = "Defense",
-				Text = hero.getDef().ToString()
+				Text = game.heroes[hero].getDef().ToString()
 			};
 
 			var heroDex = new Entry()
 			{
 				Placeholder = "Dexterity",
-				Text = hero.getDex().ToString()
+				Text = game.heroes[hero].getDex().ToString()
 			};
 
 			var saveBtn = new Button()
@@ -65,13 +65,13 @@ namespace nat20sDD
 
 			saveBtn.Clicked += delegate
 			{
-				hero.setName(heroName.Text);
-				hero.setHP(Int32.Parse(heroHP.Text));
-				hero.setStr(Int32.Parse(heroStr.Text));
-				hero.setSpd(Int32.Parse(heroSpd.Text));
-				hero.setDef(Int32.Parse(heroDef.Text));
-				hero.setDex(Int32.Parse(heroDex.Text));
-				Navigation.PopModalAsync();
+				game.heroes[hero].setName(heroName.Text);
+				game.heroes[hero].setHP(Int32.Parse(heroHP.Text));
+				game.heroes[hero].setStr(Int32.Parse(heroStr.Text));
+				game.heroes[hero].setSpd(Int32.Parse(heroSpd.Text));
+				game.heroes[hero].setDef(Int32.Parse(heroDef.Text));
+				game.heroes[hero].setDex(Int32.Parse(heroDex.Text));
+				Navigation.PushModalAsync(new TeamPage(game));
 			};
 
 			Content = new StackLayout

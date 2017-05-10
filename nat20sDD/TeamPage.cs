@@ -48,22 +48,22 @@ namespace nat20sDD
 
 			firstHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(game.heroes[0]));
+				Navigation.PushModalAsync(new EditCharPage(game, 0));
 			};
 
 			secondHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(game.heroes[1]));
+				Navigation.PushModalAsync(new EditCharPage(game, 1));
 			};
 
 			thirdHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(game.heroes[2]));
+				Navigation.PushModalAsync(new EditCharPage(game, 2));
 			};
 
 			fourthHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(game.heroes[3]));
+				Navigation.PushModalAsync(new EditCharPage(game, 3));
 			};
 
 			var autoPlayBtn = new Button { Text = "Auto-Play Game" };

@@ -16,16 +16,17 @@ namespace nat20sDD
 
             var title = new Label
             {
-                Text = "Totally Not Dungeons and Dragons",
+                Text = "Nat20's Cave Crawler",
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
             };
 
-            var dude = new Hero();
-            dude.setName("Jacob");
-            dude.setHP(500);
-            dude.setlvl(100);
-            dude.setStr(999);
+           
+			var mainIMG = new Image {
+				Source = "https://i.kinja-img.com/gawker-media/image/upload/s--f1QZSW4S--/c_scale,fl_progressive,q_80,w_800/nbeoyoc4o5bp8bgtlfan.png",
+				HeightRequest = 200,
+			};
+
 
 
             var teamSelectBtn = new Button { Text = "Select Team" };
@@ -51,7 +52,7 @@ namespace nat20sDD
             {
                 Padding = 30,
                 Spacing = 10,
-                Children = { title, teamSelectBtn, autoPlayBtn, }
+                Children = { title, mainIMG, teamSelectBtn, autoPlayBtn, }
             };
         }
     }

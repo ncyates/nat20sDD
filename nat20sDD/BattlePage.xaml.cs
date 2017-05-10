@@ -236,7 +236,7 @@ namespace nat20sDD
 			StackLayout heroes = new StackLayout
 			{
 				Children = { heroList, h1, h2, h3, h4 },
-				Padding = new Thickness(20,20,20,20),
+				Padding = new Thickness(20,20,20,0),
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
@@ -379,7 +379,7 @@ namespace nat20sDD
 
 			StackLayout Monsters = new StackLayout {
 				Children = { monsList, m1, m2, m3, m4 },
-				Padding = new Thickness(20,20,20,20),
+				Padding = new Thickness(20,20,20,0),
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
@@ -405,9 +405,16 @@ namespace nat20sDD
 				Navigation.PushModalAsync(new BattlePage(game));
 			};
 
+			var resultsButton = new Button {
+				Text = "Skip to Results",
+			};
+
+			resultsButton.Clicked += delegate {
+			};
+
 
 			Content = new StackLayout {
-				Children = {title, lists, runButton},
+				Children = {title, lists, runButton, resultsButton},
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 		}
