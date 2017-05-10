@@ -22,8 +22,12 @@ namespace nat20sDD
 			};
 
 			//HERO 1
-			var h1name = new Label {
+			var h1name = new Button {
 				Text = game.heroes[0].getName(),
+			};
+
+			h1name.Clicked += delegate {
+				Navigation.PushModalAsync(new CharPage(game.heroes[0], game));
 			};
 
 			var h1lvl = new Label {
@@ -36,7 +40,7 @@ namespace nat20sDD
 
 			var h1expbar = new ProgressBar
 			{
-				Progress = ((double)game.heroes[0].getHP()/10.0)
+				Progress = ((double)game.heroes[0].getHP()/100.0)
 			};
 
 			StackLayout h1stats = new StackLayout 
@@ -67,10 +71,14 @@ namespace nat20sDD
             };
 
 			// HERO 2
-			var h2name = new Label
+			var h2name = new Button
 			{
 				Text = game.heroes[1].getName(),
 			};
+			h2name.Clicked += delegate {
+				Navigation.PushModalAsync(new CharPage(game.heroes[1], game));
+			};
+
 
 			var h2lvl = new Label
 			{
@@ -84,7 +92,7 @@ namespace nat20sDD
 
 			var h2expbar = new ProgressBar
 			{
-				Progress = ((double)game.heroes[1].getHP() / 10.0)
+				Progress = ((double)game.heroes[1].getHP() / 100.0)
 			};
 
 			StackLayout h2stats = new StackLayout
@@ -116,10 +124,15 @@ namespace nat20sDD
 			};
 
 			//Hero 3
-			var h3name = new Label
+			var h3name = new Button
 			{
 				Text = game.heroes[2].getName(),
 			};
+
+			h3name.Clicked += delegate {
+				Navigation.PushModalAsync(new CharPage(game.heroes[2], game));
+			};
+
 
 			var h3lvl = new Label
 			{
@@ -133,7 +146,7 @@ namespace nat20sDD
 
 			var h3expbar = new ProgressBar
 			{
-				Progress = ((double)game.heroes[2].getHP() / 10.0)
+				Progress = ((double)game.heroes[2].getHP() / 100.0)
 			};
 
 			StackLayout h3stats = new StackLayout
@@ -165,9 +178,12 @@ namespace nat20sDD
 			};
 
 			//Hero 4
-			var h4name = new Label
+			var h4name = new Button
 			{
 				Text = game.heroes[3].getName(),
+			};
+			h4name.Clicked += delegate {
+				Navigation.PushModalAsync(new CharPage(game.heroes[3], game));
 			};
 
 			var h4lvl = new Label
@@ -182,7 +198,7 @@ namespace nat20sDD
 
 			var h4expbar = new ProgressBar
 			{
-				Progress = ((double)game.heroes[3].getHP() / 10.0)
+				Progress = ((double)game.heroes[3].getHP() / 100.0)
 			};
 
 			StackLayout h4stats = new StackLayout
@@ -240,7 +256,7 @@ namespace nat20sDD
 
 			var m1bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[0].getHP() / 10.0)
+			Progress = ((double)game.battle.monsters[0].getHP() / 100.0)
 			};
 
 			var m1pic = new Image 
@@ -271,7 +287,7 @@ namespace nat20sDD
 
 			var m2bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[1].getHP() / 10.0)
+			Progress = ((double)game.battle.monsters[1].getHP() / 100.0)
 			};
 
 			var m2pic = new Image
@@ -303,7 +319,7 @@ namespace nat20sDD
 
 			var m3bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[2].getHP() / 10.0)
+			Progress = ((double)game.battle.monsters[2].getHP() / 100.0)
 			};
 
 			var m3pic = new Image
@@ -335,7 +351,7 @@ namespace nat20sDD
 
 			var m4bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[3].getHP() / 10.0)
+			Progress = ((double)game.battle.monsters[3].getHP() / 100.0)
 			};
 
 			var m4pic = new Image
@@ -378,6 +394,11 @@ namespace nat20sDD
 
 			var runButton = new Button {
 				Text = "Run Battle Sequence",
+			};
+
+			runButton.Clicked += delegate {
+				game.play();
+				Navigation.PushModalAsync(new BattlePage(game));
 			};
 
 

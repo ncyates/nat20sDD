@@ -10,7 +10,7 @@ namespace nat20sDD
 
 
 
-        public CharPage(Hero C)
+        public CharPage(Hero C, Game game)
         {
 
             var title = new Label
@@ -103,7 +103,7 @@ namespace nat20sDD
 
             invButton.Clicked += delegate
             {
-                Navigation.PushModalAsync(new MainPage());
+				Navigation.PushModalAsync(new BattlePage(game));
             };
 
             Content = new StackLayout

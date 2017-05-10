@@ -30,7 +30,7 @@ namespace nat20sDD
 
             var teamSelectBtn = new Button { Text = "Select Team" };
             var autoPlayBtn = new Button { Text = "Auto-Play Game" };
-            var charButton = new Button { Text = "Character Detail Prototype" };
+          
 
             teamSelectBtn.Clicked += delegate
             {
@@ -38,10 +38,6 @@ namespace nat20sDD
                 Navigation.PushModalAsync(new TeamPage(game));
             };
 
-            charButton.Clicked += delegate
-            {
-                Navigation.PushModalAsync(new CharPage(dude));
-            };
 
             autoPlayBtn.Clicked += delegate
             {
@@ -49,18 +45,13 @@ namespace nat20sDD
                	game.play();
             };
 
-            var monsterButton = new Button { Text = "Monster Detail Prototype" };
-
-            monsterButton.Clicked += delegate
-            {
-                Navigation.PushModalAsync(new MonsterPage());
-            };
+           
 
             Content = new StackLayout
             {
                 Padding = 30,
                 Spacing = 10,
-                Children = { title, teamSelectBtn, autoPlayBtn, charButton, monsterButton }
+                Children = { title, teamSelectBtn, autoPlayBtn, }
             };
         }
     }
