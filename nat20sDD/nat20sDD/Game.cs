@@ -15,6 +15,7 @@ namespace nat20sDD
         public Game()
         {
             heroes = initHeroes();
+			battle = new Battle(heroes);
             utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;

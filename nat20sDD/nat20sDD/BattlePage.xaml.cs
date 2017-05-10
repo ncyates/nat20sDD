@@ -12,7 +12,7 @@ namespace nat20sDD
 			InitializeComponent();
 
 			//Logic Stuff
-			game.battle = new Battle(game.heroes);
+			// game.battle = new Battle(game.heroes);
 
 			var heroList = new Label {
 				Text = "Heroes",
@@ -255,7 +255,7 @@ namespace nat20sDD
 
 			var m1Hp = new Label
 			{
-			Text = "HP: " + game.heroes[0].getHP().ToString(),
+			Text = "HP: " + game.battle.monsters[0].getHP().ToString(),
 			};
 
 			var m1bar = new ProgressBar
@@ -286,7 +286,7 @@ namespace nat20sDD
 
 			var m2Hp = new Label
 			{
-			Text = "HP: " + game.heroes[1].getHP().ToString(),
+			Text = "HP: " + game.battle.monsters[1].getHP().ToString(),
 			};
 
 			var m2bar = new ProgressBar
@@ -318,7 +318,7 @@ namespace nat20sDD
 
 			var m3Hp = new Label
 			{
-			Text = "HP: " + game.heroes[2].getHP().ToString(),
+			Text = "HP: " + game.battle.monsters[2].getHP().ToString(),
 			};
 
 			var m3bar = new ProgressBar
@@ -350,7 +350,7 @@ namespace nat20sDD
 
 			var m4Hp = new Label
 			{
-			Text = "HP: " + game.heroes[3].getHP().ToString(),
+			Text = "HP: " + game.battle.monsters[3].getHP().ToString(),
 			};
 
 			var m4bar = new ProgressBar
@@ -402,6 +402,7 @@ namespace nat20sDD
 
 			runButton.Clicked += delegate {
 				game.play();
+				Console.WriteLine("HP: " + game.battle.monsters[0].getHP());
 				Navigation.PushModalAsync(new BattlePage(game));
 			};
 
