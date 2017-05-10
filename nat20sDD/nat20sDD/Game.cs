@@ -7,9 +7,9 @@ namespace nat20sDD
     public class Game
     {
 
-        List<Hero> heroes;
+        public List<Hero> heroes;
         const int NUM_HEROES = 4;
-        Battle battle;
+        public Battle battle;
         int battleCount;
         int totalScore;
         public Game()
@@ -18,7 +18,7 @@ namespace nat20sDD
             utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
-            play();
+            
             Console.WriteLine("Heroes fought " + battleCount + " battles.");
             Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
         }
@@ -44,9 +44,6 @@ namespace nat20sDD
 
         public void play()
         {
-            while (heroTeamLives())
-            {
-                battle = new Battle(heroes);
                 battleCount++;
                 while(heroTeamLives() && monsterTeamLives(battle.monsters))
                 {
@@ -76,9 +73,6 @@ namespace nat20sDD
                             battle.attack(battle.monsters[i], heroes[target]);
                         }
                     }
-
-                
-                }
             }
         }
 
