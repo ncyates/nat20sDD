@@ -7,8 +7,10 @@ namespace nat20sDD
 {
 	public class TeamPage : ContentPage
 	{
-		public TeamPage(Hero hero1, Hero hero2, Hero hero3, Hero hero4)
+		public TeamPage(Game game)
 		{
+			
+
 
 			var title = new Label
 			{
@@ -18,50 +20,50 @@ namespace nat20sDD
 			
 			var firstHero = new Button
 			{
-				Text = hero1.getName(),
+				Text = game.heroes[0].getName(),
 				FontSize = 28,
 				HorizontalOptions = LayoutOptions.Center,
 			};
 
 			var secondHero = new Button
 			{
-				Text = hero2.getName(),
+				Text = game.heroes[1].getName(),
 				FontSize = 28,
 				HorizontalOptions = LayoutOptions.Center,
 			};
 
 			var thirdHero = new Button
 			{
-				Text = hero3.getName(),
+				Text = game.heroes[2].getName(),
 				FontSize = 28,
 				HorizontalOptions = LayoutOptions.Center,
 			};
 
 			var fourthHero = new Button
 			{
-				Text = hero4.getName(),
+				Text = game.heroes[3].getName(),
 				FontSize = 28,
 				HorizontalOptions = LayoutOptions.Center,
 			};
 
 			firstHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(hero1));
+				Navigation.PushModalAsync(new EditCharPage(game, 0));
 			};
 
 			secondHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(hero2));
+				Navigation.PushModalAsync(new EditCharPage(game, 1));
 			};
 
 			thirdHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(hero3));
+				Navigation.PushModalAsync(new EditCharPage(game, 2));
 			};
 
 			fourthHero.Clicked += delegate
 			{
-				Navigation.PushModalAsync(new EditCharPage(hero4));
+				Navigation.PushModalAsync(new EditCharPage(game, 3));
 			};
 
 			var autoPlayBtn = new Button { Text = "Auto-Play Game" };
@@ -69,12 +71,8 @@ namespace nat20sDD
 
 			firstBattle.Clicked += delegate
 			{
-				List<Hero> heroes = new List<Hero>();
-				heroes.Add(hero1);
-				heroes.Add(hero2);
-				heroes.Add(hero3);
-				heroes.Add(hero4);
-
+				
+				Navigation.PushModalAsync(new BattlePage(game));
 				// Navigate to battle page
 				// Navigation.PushModalAsync(new BattlePage(heroes));
 				// - Battle battle = new Battle(heroes);

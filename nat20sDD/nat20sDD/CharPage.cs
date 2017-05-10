@@ -10,7 +10,7 @@ namespace nat20sDD
 
 
 
-        public CharPage(Hero C)
+        public CharPage(Hero C, Game game)
         {
 
             var title = new Label
@@ -33,7 +33,7 @@ namespace nat20sDD
 
             var lvlProg = new ProgressBar
             {
-                Progress = .3,
+				Progress = (double)C.getExp()/100.0,
             };
 
             StackLayout level = new StackLayout
@@ -52,23 +52,23 @@ namespace nat20sDD
 
             var str = new Label
             {
-                Text = "Str- " + +C.getStr(),
+                Text = "Str- " + C.getStr(),
             };
 
             var spd = new Label
             {
-                Text = "Spd - 10"
+				Text = "Spd - " + C.getSpd(),
             };
 
 
             var def = new Label
             {
-                Text = "Def - 10"
+				Text = "Def - " + C.getDef(),
             };
 
             var dex = new Label
             {
-                Text = "Dex - 10"
+				Text = "Dex - " + C.getDex(),
             };
 
             StackLayout stats = new StackLayout
@@ -103,7 +103,7 @@ namespace nat20sDD
 
             invButton.Clicked += delegate
             {
-                Navigation.PushModalAsync(new MainPage());
+				Navigation.PushModalAsync(new BattlePage(game));
             };
 
             Content = new StackLayout
