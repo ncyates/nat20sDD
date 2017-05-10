@@ -11,9 +11,6 @@ namespace nat20sDD
 		{
 			InitializeComponent();
 
-			//Logic Stuff
-			// game.battle = new Battle(game.heroes);
-
 			var heroList = new Label {
 				Text = "Heroes",
 				HorizontalOptions = LayoutOptions.Center,
@@ -28,7 +25,7 @@ namespace nat20sDD
 			};
 
 			h1name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[0], game));
+				Navigation.PushModalAsync(new CharPage(game.heroes[0]));
 			};
 
 			var h1lvl = new Label {
@@ -78,7 +75,7 @@ namespace nat20sDD
 				HeightRequest = 40,
 			};
 			h2name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[1], game));
+				Navigation.PushModalAsync(new CharPage(game.heroes[1]));
 			};
 
 
@@ -133,7 +130,7 @@ namespace nat20sDD
 			};
 
 			h3name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[2], game));
+				Navigation.PushModalAsync(new CharPage(game.heroes[2]));
 			};
 
 
@@ -187,7 +184,7 @@ namespace nat20sDD
 				HeightRequest = 40,
 			};
 			h4name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[3], game));
+				Navigation.PushModalAsync(new CharPage(game.heroes[3]));
 			};
 
 			var h4lvl = new Label
@@ -260,7 +257,7 @@ namespace nat20sDD
 
 			var m1bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[0].getHP() / 100.0)
+			Progress = ((double)game.battle.monsters[0].getHP() / 70.0)
 			};
 
 			var m1pic = new Image 
@@ -291,7 +288,7 @@ namespace nat20sDD
 
 			var m2bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[1].getHP() / 100.0)
+			Progress = ((double)game.battle.monsters[1].getHP() / 70.0)
 			};
 
 			var m2pic = new Image
@@ -323,7 +320,7 @@ namespace nat20sDD
 
 			var m3bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[2].getHP() / 100.0)
+			Progress = ((double)game.battle.monsters[2].getHP() / 70.0)
 			};
 
 			var m3pic = new Image
@@ -355,7 +352,7 @@ namespace nat20sDD
 
 			var m4bar = new ProgressBar
 			{
-			Progress = ((double)game.battle.monsters[3].getHP() / 100.0)
+			Progress = ((double)game.battle.monsters[3].getHP() / 70.0)
 			};
 
 			var m4pic = new Image
@@ -396,29 +393,79 @@ namespace nat20sDD
 				FontAttributes = FontAttributes.Bold,
 			};
 
-			var runButton = new Button {
-				Text = "Run Battle Sequence",
+			var battle = new StackLayout()
+			{
+				Children = { title, lists },
+				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
-			runButton.Clicked += delegate {
-				game.play();
-				Console.WriteLine("HP: " + game.battle.monsters[0].getHP());
-				Navigation.PushModalAsync(new BattlePage(game));
-			};
+			int d = 0;
+			foreach (Monster monster in game.battle.monsters)
+			{
+				if (monster.isDead())
+				{
+					d++;
+				}
+			}
+			if (d == 4)
+			{
+				DisplayAlert("Victory!", "You have slain all the monsters.", "OK");
 
-			var resultsButton = new Button {
-				Text = "Skip to Results",
-			};
+				var resultButton = new Button
+				{
+					Text = "Show Results",
+				};
 
-			resultsButton.Clicked += delegate {
-                Navigation.PushModalAsync(new GameResultPage(game));
-			};
+				resultButton.Clicked += delegate
+				{
+					Navigation.PushModalAsync(new GameResultPage(game));
+				};
+				battle.Children.Add(resultButton);
+			}
+			else
+			{
+				var runButton = new Button
+				{
+					Text = "Run Battle Sequence",
+				};
 
+				runButton.Clicked += delegate
+				{
+					game.play();
+					Navigation.PushModalAsync(new BattlePage(game));
+				};
 
-			Content = new StackLayout {
-				Children = {title, lists, runButton, resultsButton},
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
+				var resultsButton = new Button
+				{
+					Text = "Skip to Results",
+				};
+
+				resultsButton.Clicked += delegate {
+					game.play();
+					int dead = 0;
+					foreach (Hero hero in game.heroes)
+					{
+						if (hero.isDead())
+						{
+							dead++;
+						}
+					}
+					if (dead == 4)
+					{
+						DisplayAlert("Game Over!", "Your heroes have been killed.", "OK");
+					}
+					else
+					{
+						DisplayAlert("Victory!", "You have slain all the monsters.", "OK");
+					}
+					Navigation.PushModalAsync(new GameResultPage(game));
+				};
+
+				battle.Children.Add(runButton);
+				battle.Children.Add(resultsButton);
+			}
+
+			Content = battle;
 		}
 
 

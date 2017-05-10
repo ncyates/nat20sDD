@@ -8,7 +8,7 @@ namespace nat20sDD
 { 
     public class MonsterPage : ContentPage
 {
-    public MonsterPage()
+    public MonsterPage(Monster monster)
     {
 
         var title = new Label
@@ -19,7 +19,7 @@ namespace nat20sDD
 
         var name = new Label
         {
-            Text = "Monster Name",
+            Text = monster.getName(),
             FontSize = 20,
             HorizontalOptions = LayoutOptions.Center,
         };
@@ -30,28 +30,28 @@ namespace nat20sDD
 
         var health = new Label
         {
-            Text = "Hp - 10"
+            Text = "HP - " + monster.getHP()
         };
 
         var str = new Label
         {
-            Text = "Str- 10"
+            Text = "Strength - " + monster.getStr()
         };
 
         var spd = new Label
         {
-            Text = "Spd - 10"
+            Text = "Speed - " + monster.getSpd()
         };
 
 
         var def = new Label
         {
-            Text = "Def - 10"
+            Text = "Defense - " + monster.getDef()
         };
 
         var dex = new Label
         {
-            Text = "Dex - 10"
+            Text = "Dexterity - " + monster.getDex()
         };
 
         StackLayout stats = new StackLayout
@@ -81,7 +81,7 @@ namespace nat20sDD
 
         invButton.Clicked += delegate
         {
-            Navigation.PushModalAsync(new MainPage());
+			Navigation.PopModalAsync();
         };
 
         Content = new StackLayout
