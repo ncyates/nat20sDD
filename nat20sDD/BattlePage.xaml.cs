@@ -24,6 +24,7 @@ namespace nat20sDD
 			//HERO 1
 			var h1name = new Button {
 				Text = game.heroes[0].getName(),
+				HeightRequest = 40,
 			};
 
 			h1name.Clicked += delegate {
@@ -74,6 +75,7 @@ namespace nat20sDD
 			var h2name = new Button
 			{
 				Text = game.heroes[1].getName(),
+				HeightRequest = 40,
 			};
 			h2name.Clicked += delegate {
 				Navigation.PushModalAsync(new CharPage(game.heroes[1], game));
@@ -127,6 +129,7 @@ namespace nat20sDD
 			var h3name = new Button
 			{
 				Text = game.heroes[2].getName(),
+				HeightRequest = 40,
 			};
 
 			h3name.Clicked += delegate {
@@ -181,6 +184,7 @@ namespace nat20sDD
 			var h4name = new Button
 			{
 				Text = game.heroes[3].getName(),
+				HeightRequest = 40,
 			};
 			h4name.Clicked += delegate {
 				Navigation.PushModalAsync(new CharPage(game.heroes[3], game));

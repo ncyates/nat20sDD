@@ -44,9 +44,6 @@ namespace nat20sDD
 
         public void play()
         {
-            while (heroTeamLives())
-            {
-                battle = new Battle(heroes);
                 battleCount++;
                 while(heroTeamLives() && monsterTeamLives(battle.monsters))
                 {
@@ -76,9 +73,6 @@ namespace nat20sDD
                             battle.attack(battle.monsters[i], heroes[target]);
                         }
                     }
-
-                
-                }
             }
         }
 
