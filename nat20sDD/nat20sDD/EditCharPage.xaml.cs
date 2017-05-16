@@ -31,31 +31,36 @@ namespace nat20sDD
 			var heroHP = new Entry()
 			{
 				Placeholder = "HP",
-				Text = "HP: " + game.heroes[hero].getHP().ToString()
-			};
+				Text = game.heroes[hero].getHP().ToString()
+                //Text = "HP: " + game.heroes[hero].getHP().ToString()
+            };
 
 			var heroStr = new Entry()
 			{
 				Placeholder = "Strength",
-				Text = "Strength: " + game.heroes[hero].getStr().ToString()
-			};
+				Text = game.heroes[hero].getStr().ToString()
+                //Text = "Strength: " + game.heroes[hero].getStr().ToString()
+            };
 
 			var heroSpd = new Entry()
 			{
 				Placeholder = "Speed",
-				Text = "Speed: " + game.heroes[hero].getSpd().ToString()
-			};
+                Text = game.heroes[hero].getSpd().ToString()
+                //Text = "Speed: " + game.heroes[hero].getSpd().ToString()
+            };
 
 			var heroDef = new Entry()
 			{
 				Placeholder = "Defense",
-				Text = "Defense: " + game.heroes[hero].getDef().ToString()
-			};
+                Text = game.heroes[hero].getDef().ToString()
+                //Text = "Defense: " + game.heroes[hero].getDef().ToString()
+            };
 
 			var heroDex = new Entry()
 			{
 				Placeholder = "Dexterity",
-				Text = "Dexterity: " + game.heroes[hero].getDex().ToString()
+                Text = game.heroes[hero].getDex().ToString()
+                //Text = "Dexterity: " + game.heroes[hero].getDex().ToString()
 			};
 
 			var saveBtn = new Button()
