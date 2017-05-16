@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nat20sDD.InventoryPage">
+  <ListView x:Name="ItemsView"
+            ItemsSource="{Binding Path=Items}"
+            ListView.RowHeight="150">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout Orientation="Vertical">
+            <Entry Text="{Binding id}" IsEnabled="false"/>
+            <Entry Text="{Binding name}" />
+            <Entry Text="{Binding hp}" />
+            <Entry Text="{Binding strength}" />  
+          </StackLayout>
+        </ViewCell>          
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
+</ContentPage>
