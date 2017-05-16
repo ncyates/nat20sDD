@@ -14,7 +14,8 @@ namespace nat20sDD
 	{
 		public EditCharPage (Game game, int hero)
 		{
-			// InitializeComponent ();
+            // InitializeComponent ();
+
 
 			var title = new Label
 			{
@@ -22,41 +23,77 @@ namespace nat20sDD
 				FontSize = 28,
 			};
 
-			var heroName = new Entry()
+            var nameLabel = new Label
+            {
+                Text = "Name: ",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+            };
+            var heroName = new Entry()
 			{
 				Placeholder = "Name",
 				Text = game.heroes[hero].getName()
 			};
 
-			var heroHP = new Entry()
+            var hpLabel = new Label
+            {
+                Text = "HP: ",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+            };
+            var heroHP = new Entry()
 			{
 				Placeholder = "HP",
 				Text = game.heroes[hero].getHP().ToString()
                 //Text = "HP: " + game.heroes[hero].getHP().ToString()
             };
 
-			var heroStr = new Entry()
+            var strLabel = new Label
+            {
+                Text = "Strength: ",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+            };
+            var heroStr = new Entry()
 			{
 				Placeholder = "Strength",
 				Text = game.heroes[hero].getStr().ToString()
                 //Text = "Strength: " + game.heroes[hero].getStr().ToString()
             };
 
-			var heroSpd = new Entry()
+            var spdLabel = new Label
+            {
+                Text = "Speed: ",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+            };
+            var heroSpd = new Entry()
 			{
 				Placeholder = "Speed",
                 Text = game.heroes[hero].getSpd().ToString()
                 //Text = "Speed: " + game.heroes[hero].getSpd().ToString()
             };
 
-			var heroDef = new Entry()
+            var defLabel = new Label
+            {
+                Text = "Defense: ",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+            };
+            var heroDef = new Entry()
 			{
 				Placeholder = "Defense",
                 Text = game.heroes[hero].getDef().ToString()
                 //Text = "Defense: " + game.heroes[hero].getDef().ToString()
             };
 
-			var heroDex = new Entry()
+            var dexLabel = new Label
+            {
+                Text = "Dexterity: ",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+            };
+            var heroDex = new Entry()
 			{
 				Placeholder = "Dexterity",
                 Text = game.heroes[hero].getDex().ToString()
@@ -83,7 +120,7 @@ namespace nat20sDD
 			{
 				Padding = 30,
 				Spacing = 10,
-				Children = { title, heroName, heroHP, heroStr, heroSpd, heroDef, heroDex, saveBtn }
+				Children = { title, nameLabel, heroName, hpLabel, heroHP, strLabel, heroStr, spdLabel, heroSpd, defLabel, heroDef, dexLabel, heroDex, saveBtn }
 			};
 		}
 	}
