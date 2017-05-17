@@ -156,5 +156,12 @@ namespace nat20sDD
             }
         }
         
+
+
+        public int RollRange(int low, int high)
+        {
+            Random random = new Random();
+            return random.Next(low, high);
+        }
     }
 }

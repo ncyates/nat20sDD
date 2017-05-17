@@ -21,19 +21,48 @@ namespace nat20sDD
 
         }
 
+        // takes strength
+        public int RollForDamage(int dieSize)
+        {
+            Random random = new Random();
+            return random.Next(1, dieSize);
+        }
+
+        // takes dexterity
+        public int RollForHit(int attackerStrength)
+        {
+            Random random = new Random();
+            return random.Next(0, attackerStrength);
+        }
+
+        public int RollForDefense(int defenderDefense)
+        {
+            Random random = new Random();
+            return random.Next(0, defenderDefense);
+        }
+
+
         public void attack(Unit a, Unit d)
         {
-            int damage = a.getStr();
-            d.setHP(d.getHP() - damage);
-            Console.WriteLine(a.getName() + " did " + damage + " points of damage to " + d.getName());
-            int points = damage * 100;
-            if (a.isGood)
+            if (RollForHit(a.getStr()) > RollForDefense(d.getDef()))
             {
-                a.setScore((a.getScore() + points));
-                Console.WriteLine(a.getName() + " scored " + points + " points!");
+                int damage = RollForDamage(a.getStr());
+                d.setHP(d.getHP() - damage);
+                Console.WriteLine(a.getName() + " hit for " + damage + " points of damage to " + d.getName());
+                int points = damage * 100;
+                if (a.isGood)
+                {
+                    a.setScore((a.getScore() + points));
+                    Console.WriteLine(a.getName() + " scored " + points + " points!");
+                }
+            } else
+            {
+                Console.WriteLine(a.getName() + " Missed!");
             }
-            
-            
+
+
+
+
         }
 
         public List<Monster> initMonsters()
