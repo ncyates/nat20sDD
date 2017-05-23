@@ -47,28 +47,28 @@ namespace nat20sDD
 
             var health = new Label
             {
-                Text = "HP - " + C.getHP(),
+                Text = "HP: " + C.getHP(),
             };
 
             var str = new Label
             {
-                Text = "Strength - " + C.getStr(),
+                Text = "Strength: " + C.getStr(),
             };
 
             var spd = new Label
             {
-				Text = "Speed - " + C.getSpd(),
+				Text = "Speed: " + C.getSpd(),
             };
 
 
             var def = new Label
             {
-				Text = "Defense - " + C.getDef(),
+				Text = "Defense: " + C.getDef(),
             };
 
             var dex = new Label
             {
-				Text = "Dexterity - " + C.getDex(),
+				Text = "Dexterity: " + C.getDex(),
             };
 
             StackLayout stats = new StackLayout
