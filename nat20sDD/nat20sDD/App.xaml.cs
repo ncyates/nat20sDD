@@ -34,6 +34,11 @@ namespace nat20sDD
                         Title = "About",
                         Icon = Device.OnPlatform<string>("tab_about.png",null,null)
                     },
+                    new NavigationPage(new nat20sDD.SettingsPage())
+                    {
+                        Title = "Settings",
+                        Icon = Device.OnPlatform<string>("tab_about.png",null,null)
+                    },
                 }
             };                
         }
