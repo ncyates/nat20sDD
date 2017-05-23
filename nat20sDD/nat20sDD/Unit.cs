@@ -9,11 +9,12 @@ namespace nat20sDD
     {
         private string name;
         private int hp;
+		private int maxhp;
         private int strength;
         private int speed;
         private int defense;
         private int dexterity;
-        protected List<Item> inventory;
+        public List<Item> inventory;
         public int score;
         public bool isGood;
 
@@ -25,6 +26,7 @@ namespace nat20sDD
 		{
 			this.name = name;
 			this.hp = hp;
+			this.maxhp = hp;
 			this.strength = strength;
 			this.speed = speed;
 			this.defense = defense;
@@ -41,6 +43,10 @@ namespace nat20sDD
         {
             return hp;
         }
+		public int getMaxHP()
+		{
+			return maxhp;
+		}
         public int getStr()
         {
             return strength;
@@ -56,10 +62,6 @@ namespace nat20sDD
         public int getDex()
         {
             return dexterity;
-        }
-        public List<Item> getInv()
-        {
-            return inventory;
         }
 
         public void setScore(int s)
@@ -108,6 +110,18 @@ namespace nat20sDD
         //add item to inventory
         public void pickUp(Item i)
         {
+			if (i.attribmod == "SPEED")
+			{
+				speed += i.tier;
+			}
+			else if (i.attribmod == "STRENGTH")
+			{
+				strength += i.tier;
+			}
+			else if (i.attribmod == "DEFENSE")
+			{
+				defense += i.tier;
+			}
             inventory.Add(i);
         }
 
