@@ -41,28 +41,55 @@ namespace nat20sDD
             return random.Next(0, defenderDefense);
         }
 
-
-        public void attack(Unit a, Unit d)
+        public int Roll20()
         {
-            if (RollForHit(a.getStr()) > RollForDefense(d.getDef()))
+            Random random = new Random();
+            return random.Next(1, 20);
+        }
+
+
+        public void TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(Unit a, Unit d)
+        {
+            int temp = Roll20();
+            //crit hit
+            if (temp == 20)
             {
-                int damage = RollForDamage(a.getStr());
+                int damage = RollForDamage(a.getStr()) * 2;
                 d.setHP(d.getHP() - damage);
-                Console.WriteLine(a.getName() + " hit for " + damage + " points of damage to " + d.getName());
+                Console.WriteLine(a.getName() + " did a Critical Hit for " + damage + " points of damage to " + d.getName() + "!");
                 int points = damage * 100;
                 if (a.isGood)
                 {
                     a.setScore((a.getScore() + points));
                     Console.WriteLine(a.getName() + " scored " + points + " points!");
                 }
-            } else
-            {
-                Console.WriteLine(a.getName() + " Missed!");
             }
-
-
-
-
+            //regular roll
+            else if(temp > 1)
+            {
+                if (RollForHit(a.getStr()) > RollForDefense(d.getDef()))
+                {
+                    int damage = RollForDamage(a.getStr());
+                    d.setHP(d.getHP() - damage);
+                    Console.WriteLine(a.getName() + " hit for " + damage + " points of damage to " + d.getName());
+                    int points = damage * 100;
+                    if (a.isGood)
+                    {
+                        a.setScore((a.getScore() + points));
+                        Console.WriteLine(a.getName() + " scored " + points + " points");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(a.getName() + " Missed");
+                }
+            }
+            //crit miss
+            else
+            {
+                Console.WriteLine(a.getName() + "Critically Missed!");
+                //Needs to Drop an item from the attacker
+            }
         }
 
         public List<Monster> initMonsters()
@@ -83,3 +110,4 @@ namespace nat20sDD
         }
     }
 }
+

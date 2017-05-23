@@ -60,7 +60,7 @@ namespace nat20sDD
                                 Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
                                 break;
                             }
-                            battle.attack(heroes[i], battle.monsters[target]);
+                            battle.TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(heroes[i], battle.monsters[target]);
                         }
                         if (!battle.monsters[i].isDead())
                         {
@@ -71,7 +71,7 @@ namespace nat20sDD
                                 sumScores();
                                 break;
                             }
-                            battle.attack(battle.monsters[i], heroes[target]);
+                            battle.TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(battle.monsters[i], heroes[target]);
                         }
                     }
             }
