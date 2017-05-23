@@ -14,6 +14,26 @@ namespace nat20sDD
         public int defense { get; set; }
         public int dexterity { get; set; }
 
+		public string image { get; set; }
+		public string description { get; set; }
+		public int tier { get; set; }
+		public string bodypart { get; set; }
+		public string attribmod { get; set; }
+		public int usage { get; set; }
+		public string creator { get; set; }
+
+		public Item(string img, string name, string desc, int tier, string bpart, string amod, 
+			int usage, string creator)
+		{
+			image = img;
+			this.name = name;
+			description = desc;
+			this.tier = tier;
+			bodypart = bpart;
+			attribmod = amod;
+			this.usage = usage;
+			this.creator = creator;
+		}
 
         public Item(string n, int h, int str, int spd, int def, int dex)
         {
