@@ -10,7 +10,9 @@ namespace nat20sDD
         public List<Hero> heroes;
 		public List<BattleEvent> events;
 		public List<Item> items;
-        const int NUM_HEROES = 4;
+		public List<string> heroImgs;
+		public List<string> monstImgs;
+		const int NUM_HEROES = 4;
         public Battle battle;
         int battleCount;
         public int totalScore;
@@ -31,7 +33,12 @@ namespace nat20sDD
 
         public Game()
         {
-            heroes = initHeroes();
+			heroImgs = new List<string>();
+			heroImgs.Add("https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg");
+			heroImgs.Add("http://annawrites.com/blog/wp-content/uploads/2012/02/family-guy-267x300.jpg");
+			heroImgs.Add("http://annawrites.com/blog/wp-content/uploads/2012/02/mad-scientist-300x300.jpg");
+			heroImgs.Add("https://img.clipartfest.com/d34754abc7b9f37aa56c16ba207779c0_ra-zombie-character-character-vs-character-clipart_618-464.jpeg");
+			heroes = initHeroes();
 			events = new List<BattleEvent>();
 			items = new List<Item>();
 			battle = new Battle(heroes,this); // HAAHAH, worst design ever
@@ -47,17 +54,20 @@ namespace nat20sDD
         //function to create heroes team
         public List<Hero> initHeroes()
         {
-            List<Hero> team = new List<Hero>();
+			Random imgchoice = new Random();
+			List<Hero> team = new List<Hero>();
             for(int i = 0; i < NUM_HEROES; i++)
             {
-                Hero h = new Hero();
+				int choice = imgchoice.Next(0, 3);
+				Hero h = new Hero();
                 h.setName("Strong dude " + (i+1));
                 h.setHP(100);
                 h.setStr(10);
                 h.setDex(10);
                 h.setDef(10);
                 h.setlvl(1);
-                team.Add(h);                
+				h.imgUri = heroImgs[choice];
+				team.Add(h);                
             }
             return team;
         }

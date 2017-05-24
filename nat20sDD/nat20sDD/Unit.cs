@@ -17,6 +17,7 @@ namespace nat20sDD
         public List<Item> inventory;
         public int score;
         public bool isGood;
+		public string imgUri;
 
         public Unit() : this("blank", 10, 1, 1, 1, 1)
         {

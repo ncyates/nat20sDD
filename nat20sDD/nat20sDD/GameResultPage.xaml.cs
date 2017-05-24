@@ -49,39 +49,56 @@ namespace nat20sDD
                 Text = game.heroes[3].getName().ToString() + ": " + game.heroes[3].getScore().ToString()
             };
 
-            //var autoPlayBtn = new Button { Text = "Auto-Play Game" };
-            var autoPlayBtn = new Button { Text = "Return Home" };
+            var newGame = new Button { Text = "Return Home" };
 
-            autoPlayBtn.Clicked += delegate
+            newGame.Clicked += delegate
             {
-                Game game1 = new Game();
-
-                //Navigation.PushModalAsync(new GameResultPage(game1));
-                Navigation.PushModalAsync(new MainPage(game));
-            };
+				Game g = new Game();
+				App.Current.MainPage = new TabbedPage
+				{
+					Children =
+					{
+						new NavigationPage(new nat20sDD.MainPage(g))
+						{
+							Title = "Home",
+							Icon = Device.OnPlatform<string>("tab_feed.png", null, null)
+						},
+						new NavigationPage(new nat20sDD.AboutPage())
+						{
+							Title = "About",
+							Icon = Device.OnPlatform<string>("tab_about.png", null, null)
+						},
+						new NavigationPage(new nat20sDD.SettingsPage(g))
+						{
+							Title = "Settings",
+							Icon = Device.OnPlatform<string>("tab_about.png", null, null)
+						},
+					}
+				};
+			};
 
             var charPic1 = new Image
             {
-                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
-                WidthRequest = 100,
+                Source = game.heroes[0].imgUri,
+				WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic2 = new Image
             {
-                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
-                WidthRequest = 100,
+                Source = game.heroes[1].imgUri,
+				WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic3 = new Image
             {
-                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
-                WidthRequest = 100,
+                Source = game.heroes[2].imgUri,
+				WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic4 = new Image
             {
-                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
-                WidthRequest = 100,
+                Source = game.heroes[3].imgUri,
+				WidthRequest = 100,
                 HeightRequest = 100,
             };
 
@@ -109,7 +126,7 @@ namespace nat20sDD
             {
                 Padding = 30,
                 Spacing = 20,
-                Children = { title, gameScore, grid, autoPlayBtn }
+                Children = { title, gameScore, grid, newGame }
             };
         }
 	}

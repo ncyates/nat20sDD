@@ -79,8 +79,8 @@ namespace nat20sDD
 
             var charPic = new Image
             {
-                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
-                WidthRequest = 100,
+                Source = C.imgUri,
+				WidthRequest = 100,
                 HeightRequest = 200,
                 VerticalOptions = LayoutOptions.Center,
             };

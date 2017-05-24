@@ -37,6 +37,7 @@ namespace nat20sDD
 
             teamSelectBtn.Clicked += async delegate
             {
+
 				List<Item> items = new List<Item>();
 				List<BattleEvent> events = new List<BattleEvent>();
 
@@ -64,10 +65,32 @@ namespace nat20sDD
             };
 
 
-            autoPlayBtn.Clicked += delegate
+            autoPlayBtn.Clicked += async delegate
             {
-                //Game game = new Game();
-                game.play();
+				List<Item> items = new List<Item>();
+				List<BattleEvent> events = new List<BattleEvent>();
+
+				string url = "http://gamehackathon.azurewebsites.net/api/GetItemsList";
+				string itemListRequest = await PostRequestAsync(url);
+				var result = JObject.Parse(itemListRequest);
+				foreach (var item in result["data"])
+				{
+					Item i = item.ToObject<Item>();
+					items.Add(i);
+				}
+
+				url = "http://gamehackathon.azurewebsites.net/api/GetBattleEffects";
+				string eventListRequest = await PostRequestAsync(url);
+				result = JObject.Parse(eventListRequest);
+				foreach (var battleEvent in result["data"])
+				{
+					BattleEvent e = battleEvent.ToObject<BattleEvent>();
+					events.Add(e);
+				}
+
+				game.items = items;
+				game.events = events;
+				game.play();
                 Navigation.PushModalAsync(new GameResultPage(game));
                	
             };

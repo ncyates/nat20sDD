@@ -13,11 +13,17 @@ namespace nat20sDD
 		public List<Item> loot;
 		public Game theGame;
 		public List<BattleEvent> events;
+		public List<string> monstImgs;
 
 		const int NUM_MONSTERS = 4;
 
 		public Battle(List<Hero> characters, Game game)
 		{
+			monstImgs = new List<string>();
+			monstImgs.Add("http://www.publicdomainpictures.net/pictures/160000/velka/blue-monster.jpg");
+			monstImgs.Add("http://images.clipartpanda.com/monster-clipart-6Tpo6nM6c.png");
+			monstImgs.Add("http://content.mycutegraphics.com/graphics/monster/four-arm-monster.png");
+			monstImgs.Add("https://images.blogthings.com/thecutemonstertest/monster-8.png");
 			heroes = characters;
 			this.events = game.events;
 			monsters = initMonsters();
@@ -275,9 +281,11 @@ namespace nat20sDD
 		}
 			public List<Monster> initMonsters()
 			{
+				Random imgchoice = new Random();
 				List<Monster> monsterTeam = new List<Monster>();
 				for (int i = 0; i < NUM_MONSTERS; i++)
 				{
+					int choice = imgchoice.Next(0, 3);
 					Monster m = new Monster();
 					m.setName("Ugly Monster " + (i + 1));
 					m.setHP(75);
@@ -285,6 +293,7 @@ namespace nat20sDD
 					m.setDex(6);
 					m.setDef(4);
 					m.setDifficulty(1);
+					m.imgUri = monstImgs[choice];
 					monsterTeam.Add(m);
 				}
 				return monsterTeam;
