@@ -11,14 +11,15 @@ namespace nat20sDD
 		public List<Hero> heroes;
 		public List<Monster> monsters;
 		public List<Item> loot;
+		public List<BattleEvent> events;
 
 		const int NUM_MONSTERS = 4;
 
-		public Battle(List<Hero> characters)
+		public Battle(List<Hero> characters, List<BattleEvent> events)
 		{
 			heroes = characters;
+			this.events = events;
 			monsters = initMonsters();
-
 		}
 
 		// takes strength
@@ -47,9 +48,8 @@ namespace nat20sDD
 			return random.Next(1, 20);
 		}
 
-		public void TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(Unit a, Unit d)
+		private void CheckforHealing(Unit a, Unit d)
 		{
-			// healing 
 			int currentHP = a.getHP();
 			int maxHP = a.getMaxHP();
 			bool healing = false;
@@ -64,6 +64,46 @@ namespace nat20sDD
 					}
 				}
 			}
+		}
+
+		private void RandomBattleEvent(Unit a, Unit d)
+		{
+			Random random = new Random();
+			BattleEvent e = events[random.Next(0, events.Count - 1)];
+			int value = e.tier;
+			if (value != 0)
+			{
+				if (e.target == "ALL")
+				{
+					foreach (Hero h in heroes)
+					{
+						if (e.attribmod == "STRENGTH")
+						{
+							h.setStr(h.getStr() + value);
+						}
+						else if (e.attribmod == "SPEED")
+						{
+							h.setSpd(h.getSpd() + value);
+						}
+						else if (e.attribmod == "DEFENSE")
+						{
+							h.setDef(h.getDef() + value);
+						}
+						else
+						{
+							h.setHP(h.getHP() + value);
+						}
+					}
+				}
+			}
+
+		}
+
+		public void TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(Unit a, Unit d)
+		{
+			RandomBattleEvent(a, d);
+			CheckforHealing(a, d);
+
 			int temp = Roll20();
 			//critical hit
 			if (temp == 20)

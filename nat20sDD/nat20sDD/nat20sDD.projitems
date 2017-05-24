@@ -17,6 +17,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Battle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BattleEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EditCharPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

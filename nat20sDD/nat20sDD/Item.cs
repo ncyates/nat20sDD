@@ -8,12 +8,6 @@ namespace nat20sDD
     public class Item
     {
         public string name { get; set; }
-        public int hp { get; set; }
-        public int strength { get; set; }
-        public int speed { get; set; }
-        public int defense { get; set; }
-        public int dexterity { get; set; }
-
 		public string image { get; set; }
 		public string description { get; set; }
 		public int tier { get; set; }
@@ -34,16 +28,5 @@ namespace nat20sDD
 			this.usage = usage;
 			this.creator = creator;
 		}
-
-        public Item(string n, int h, int str, int spd, int def, int dex)
-        {
-            name = n;
-            hp = h;
-            strength = str;
-            speed = spd;
-            defense = def;
-            dexterity = dex;
-        }
-
     }
 }
