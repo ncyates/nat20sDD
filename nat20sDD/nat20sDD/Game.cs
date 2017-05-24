@@ -32,28 +32,12 @@ namespace nat20sDD
         public Game()
         {
             heroes = initHeroes();
-			battle = new Battle(heroes,this); // HAAHAH, worst design ever
-            utilityOutput(); // to check hero initialization
 			events = new List<BattleEvent>();
 			items = new List<Item>();
-			battle = new Battle(heroes, events);
-			utilityOutput(); // to check hero initialization
+			battle = new Battle(heroes,this); // HAAHAH, worst design ever
+            utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
-            /*
-            settingsMap.Add("debugModeOn", true);
-            settingsMap.Add("forceCritHit", false);
-            settingsMap.Add("forceCritMiss", false);
-            settingsMap.Add("debugModeOn", true);
-            settingsMap.Add("debugModeOn", true);
-            settingsMap.Add("debugModeOn", true);
-            settingsMap.Add("debugModeOn", true);
-            settingsMap.Add("debugModeOn", true);
-            settingsMap.Add("debugModeOn", true);
-            settingsMap.Add("debugModeOn", true);
-            */
-
-            
 
             Console.WriteLine("Heroes fought " + battleCount + " battles.");
             Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");

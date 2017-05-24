@@ -11,16 +11,17 @@ namespace nat20sDD
 		public List<Hero> heroes;
 		public List<Monster> monsters;
 		public List<Item> loot;
-        public Game theGame;
+		public Game theGame;
+		public List<BattleEvent> events;
 
 		const int NUM_MONSTERS = 4;
 
 		public Battle(List<Hero> characters, Game game)
 		{
 			heroes = characters;
-			this.events = events;
+			this.events = game.events;
 			monsters = initMonsters();
-            theGame = game;
+			theGame = game;
 		}
 
 		// takes strength
@@ -49,6 +50,39 @@ namespace nat20sDD
 			return random.Next(1, 20);
 		}
 
+		private void RandomBattleEvent(Unit a, Unit d)
+		{
+			Random random = new Random();
+			BattleEvent e = events[random.Next(0, events.Count - 1)];
+			int value = e.tier;
+			if (value != 0)
+			{
+				if (e.target == "ALL")
+				{
+					foreach (Hero h in heroes)
+					{
+						if (e.attribmod == "STRENGTH")
+						{
+							h.setStr(h.getStr() + value);
+						}
+						else if (e.attribmod == "SPEED")
+						{
+							h.setSpd(h.getSpd() + value);
+						}
+						else if (e.attribmod == "DEFENSE")
+						{
+							h.setDef(h.getDef() + value);
+						}
+						else
+						{
+							h.setHP(h.getHP() + value);
+						}
+					}
+				}
+			}
+
+		}
+
 		private void CheckforHealing(Unit a, Unit d)
 		{
 			int currentHP = a.getHP();
@@ -65,21 +99,26 @@ namespace nat20sDD
 					}
 				}
 			}
+		}
 
-            int temp = 0;
-            if (theGame.forceCritHit == true)
-            {
-                Console.Out.WriteLine("CriticalHit");
-                temp = 20;
-            } else if(theGame.forceCritMiss == true)
-            {
-                temp = 1;
-            }
-            else
-            {
-                temp = Roll20();
-            }
-			
+		public void TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(Unit a, Unit d)
+		{
+			RandomBattleEvent(a, d);
+			CheckforHealing(a, d);
+			int temp = 0;
+			if (theGame.forceCritHit == true)
+			{
+				Console.Out.WriteLine("CriticalHit");
+				temp = 20;
+			} else if (theGame.forceCritMiss == true)
+			{
+				temp = 1;
+			}
+			else
+			{
+				temp = Roll20();
+			}
+
 			//critical hit
 			if (temp == 20)
 			{
@@ -163,7 +202,7 @@ namespace nat20sDD
 						// weapon
 						if (item.bodypart == "ATTKARM")
 						{
-							offensive = true; 
+							offensive = true;
 							item.usage--;
 							// discard item if counter is 0
 							if (item.usage == 0) { a.inventory.Remove(item); }
@@ -226,15 +265,14 @@ namespace nat20sDD
 				{
 					Console.WriteLine(a.getName() + " Missed");
 				}
-				}
-				//crit miss
-				else
-				{
-					Console.WriteLine(a.getName() + "Critically Missed!");
-					//Needs to Drop an item from the attacker
-				}
 			}
-
+			//crit miss
+			else
+			{
+				Console.WriteLine(a.getName() + "Critically Missed!");
+				//Needs to Drop an item from the attacker
+			}
+		}
 			public List<Monster> initMonsters()
 			{
 				List<Monster> monsterTeam = new List<Monster>();

@@ -37,7 +37,6 @@ namespace nat20sDD
 
             teamSelectBtn.Clicked += async delegate
             {
-				Game game = new Game();
 				List<Item> items = new List<Item>();
 				List<BattleEvent> events = new List<BattleEvent>();
 
