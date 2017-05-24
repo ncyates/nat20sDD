@@ -8,6 +8,8 @@ namespace nat20sDD
     {
 
         public List<Hero> heroes;
+		public List<BattleEvent> events;
+		public List<Item> items;
         const int NUM_HEROES = 4;
         public Battle battle;
         int battleCount;
@@ -32,6 +34,10 @@ namespace nat20sDD
             heroes = initHeroes();
 			battle = new Battle(heroes,this); // HAAHAH, worst design ever
             utilityOutput(); // to check hero initialization
+			events = new List<BattleEvent>();
+			items = new List<Item>();
+			battle = new Battle(heroes, events);
+			utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
             /*
@@ -74,6 +80,8 @@ namespace nat20sDD
 
         public void play()
         {
+				battle.events = events;
+				battle.loot = items;
                 battleCount++;
                 while(heroTeamLives() && monsterTeamLives(battle.monsters))
                 {

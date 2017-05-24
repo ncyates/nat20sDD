@@ -18,6 +18,7 @@ namespace nat20sDD
 		public Battle(List<Hero> characters, Game game)
 		{
 			heroes = characters;
+			this.events = events;
 			monsters = initMonsters();
             theGame = game;
 		}
@@ -48,9 +49,8 @@ namespace nat20sDD
 			return random.Next(1, 20);
 		}
 
-		public void TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(Unit a, Unit d)
+		private void CheckforHealing(Unit a, Unit d)
 		{
-			// healing 
 			int currentHP = a.getHP();
 			int maxHP = a.getMaxHP();
 			bool healing = false;
