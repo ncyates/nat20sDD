@@ -45,7 +45,7 @@ namespace nat20sDD
             void random_results_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 random_results_label.Text = String.Format("Random Results are on: {0}:", e.Value);
-                
+                game.randomItemsOn = !game.randomItemsOn;
                 
             };
 
@@ -67,6 +67,7 @@ namespace nat20sDD
             void super_results_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 super_results_label.Text = String.Format("Super Results are on: {0}:", e.Value);
+                game.superItemsOn = !game.superItemsOn;
             };
 
             Label server_items_label = new Label
@@ -85,21 +86,25 @@ namespace nat20sDD
             server_items_switcher.Toggled += server_items_switcher_Toggled;
 
 
-
+            // maybe changing not on/off, but get new set of items
             void server_items_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 if (server_items_switcher.IsToggled == false)
                 {
+                    
                     random_results_switcher.IsToggled = false;
                     random_results_switcher.IsEnabled = false;
+                    game.randomItemsOn = false;
                     super_results_switcher.IsToggled = false;
                     super_results_switcher.IsEnabled = false;
+                    game.superItemsOn = false;
                 }
                 else
                 {
                     random_results_switcher.IsEnabled = true;
                     super_results_switcher.IsEnabled = true;
                 }
+                game.serverItemsOn = !game.serverItemsOn;
                 server_items_label.Text = String.Format("Server Items are on: {0}:", e.Value);
             };    
 
@@ -140,16 +145,19 @@ namespace nat20sDD
             void critical_hit_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 critical_hit_label.Text = String.Format("Critical Hits are on: {0}:", e.Value);
+                game.forceCritHit = !game.forceCritHit;
             };
 
 
             void critical_miss_switcher_Toggled(object sender, ToggledEventArgs e)
             {
+                game.forceCritMiss = !game.forceCritMiss;
                 critical_miss_label.Text = String.Format("Critical Misses are on: {0}:", e.Value);
                 if (critical_miss_switcher.IsToggled == true)
                 {
                     critical_hit_switcher.IsToggled = false;
                     critical_hit_switcher.IsEnabled = false;
+                    game.forceCritHit = false;
                 }
                 else
                 {
@@ -176,6 +184,7 @@ namespace nat20sDD
             void item_use_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 item_use_label.Text = String.Format("Item Usage is on: {0}:", e.Value);
+                game.itemUsageOn = !game.itemUsageOn;
             };
 
 
@@ -197,6 +206,7 @@ namespace nat20sDD
             void magic_use_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 magic_use_label.Text = String.Format("Magic Usage is on: {0}:", e.Value);
+                game.magicEnabled = !game.magicEnabled;
             };
 
 
@@ -218,6 +228,7 @@ namespace nat20sDD
             void healing_use_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 healing_use_label.Text = String.Format("Healing Usage is on: {0}:", e.Value);
+                game.healingEnabled = !game.healingEnabled;
             };
 
 
@@ -239,6 +250,7 @@ namespace nat20sDD
             void battle_events_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 battle_events_label.Text = String.Format("Battle Events are on: {0}:", e.Value);
+                game.battleEventsOn = !game.battleEventsOn;
             };
 
 
@@ -290,32 +302,41 @@ namespace nat20sDD
                 Padding = 0
             };
 
-            debugswitcher.IsEnabled = true;
-            debugswitcher.IsToggled = true;
             turnOnButtons();
-            layout.Children.Add(debugswitcher);
-            layout.Children.Add(debuglabel);
+            
             
             layout.Children.Add(server_items_switcher);
             layout.Children.Add(server_items_label);            
             layout.Children.Add(random_results_switcher);
-            layout.Children.Add(random_results_label);
-            
+            layout.Children.Add(random_results_label);            
             layout.Children.Add(super_results_switcher);
             layout.Children.Add(super_results_label);
-            
+
+            debugswitcher.IsEnabled = true;
+            game.debugModeOn = true;
+            debugswitcher.IsToggled = true;
+            layout.Children.Add(debugswitcher);
+            layout.Children.Add(debuglabel);
+
             layout.Children.Add(critical_hit_switcher);
             critical_hit_switcher.IsToggled = false;
+            game.forceCritHit = false;
             layout.Children.Add(critical_hit_label);
+
             layout.Children.Add(critical_miss_switcher);
             layout.Children.Add(critical_miss_label);
             critical_miss_switcher.IsToggled = false;
+            game.forceCritMiss = false;
+
             layout.Children.Add(item_use_switcher);
             layout.Children.Add(item_use_label);
+
             layout.Children.Add(magic_use_switcher);
             layout.Children.Add(magic_use_label);
+
             layout.Children.Add(healing_use_switcher);
             layout.Children.Add(healing_use_label);
+
             layout.Children.Add(battle_events_switcher);
             layout.Children.Add(battle_events_label);
 
@@ -337,51 +358,64 @@ namespace nat20sDD
 
                 critical_hit_switcher.IsToggled = false;
                 critical_hit_switcher.IsEnabled = false;
+                game.forceCritHit = false;
 
                 critical_miss_switcher.IsToggled = false;
                 critical_miss_switcher.IsEnabled = false;
+                game.forceCritMiss = false;
 
                 item_use_switcher.IsToggled = false;
                 item_use_switcher.IsEnabled = false;
+                game.itemUsageOn = false;
+
 
                 magic_use_switcher.IsToggled = false;
                 magic_use_switcher.IsEnabled = false;
+                game.magicEnabled = false;
 
                 healing_use_switcher.IsToggled = false;
                 healing_use_switcher.IsEnabled = false;
+                game.healingEnabled = false;
 
                 battle_events_switcher.IsToggled = false;
                 battle_events_switcher.IsEnabled = false;
+                game.battleEventsOn = false;
             }
 
             void turnOnButtons()
             {
                 server_items_switcher.IsToggled = true;
                 server_items_switcher.IsEnabled = true;
+                game.serverItemsOn = true;
 
                 random_results_switcher.IsToggled = true;
                 random_results_switcher.IsEnabled = true;
+                game.randomItemsOn = true;
 
                 super_results_switcher.IsToggled = true;
                 super_results_switcher.IsEnabled = true;
+                game.superItemsOn = true;
 
                 
                 critical_hit_switcher.IsEnabled = true;
-
-                
+                               
                 critical_miss_switcher.IsEnabled = true;
 
                 item_use_switcher.IsToggled = true;
                 item_use_switcher.IsEnabled = true;
+                game.itemUsageOn = true;
 
                 magic_use_switcher.IsToggled = true;
                 magic_use_switcher.IsEnabled = true;
+                game.magicEnabled = true;
 
                 healing_use_switcher.IsToggled = true;
                 healing_use_switcher.IsEnabled = true;
+                game.healingEnabled = true;
 
                 battle_events_switcher.IsToggled = true;
                 battle_events_switcher.IsEnabled = true;
+                game.battleEventsOn = true;
             }
         }
     }
