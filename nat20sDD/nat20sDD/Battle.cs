@@ -303,17 +303,20 @@ namespace nat20sDD
         }
         public List<Monster> initMonsters()
         {
-            List<Monster> monsterTeam = new List<Monster>();
+			Random imgchoice = new Random();
+			List<Monster> monsterTeam = new List<Monster>();
             for (int i = 0; i < NUM_MONSTERS; i++)
             {
-                Monster m = new Monster();
+				int choice = imgchoice.Next(0, 3);
+				Monster m = new Monster();
                 m.setName("Ugly Monster " + (i + 1));
                 m.setHP(75);
                 m.setStr(8);
                 m.setDex(6);
                 m.setDef(4);
                 m.setDifficulty(1);
-                monsterTeam.Add(m);
+				m.imgUri = monstImgs[choice];
+				monsterTeam.Add(m);
             }
             return monsterTeam;
         }
