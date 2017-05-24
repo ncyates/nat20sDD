@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.Http;
+
 
 namespace nat20sDD
 {
@@ -42,8 +44,9 @@ namespace nat20sDD
             };
             random_results_switcher.Toggled += random_results_switcher_Toggled;
 
-            void random_results_switcher_Toggled(object sender, ToggledEventArgs e)
+            async void random_results_switcher_Toggled(object sender, ToggledEventArgs e)
             {
+                apiCall();
                 random_results_label.Text = String.Format("Random Results are on: {0}:", e.Value);
                 game.randomItemsOn = !game.randomItemsOn;
                 
@@ -64,8 +67,9 @@ namespace nat20sDD
             };
             super_results_switcher.Toggled += super_results_switcher_Toggled;
 
-            void super_results_switcher_Toggled(object sender, ToggledEventArgs e)
+            async void super_results_switcher_Toggled(object sender, ToggledEventArgs e)
             {
+                apiCall();
                 super_results_label.Text = String.Format("Super Results are on: {0}:", e.Value);
                 game.superItemsOn = !game.superItemsOn;
             };
@@ -87,8 +91,9 @@ namespace nat20sDD
 
 
             // maybe changing not on/off, but get new set of items
-            void server_items_switcher_Toggled(object sender, ToggledEventArgs e)
+            async void server_items_switcher_Toggled(object sender, ToggledEventArgs e)
             {
+                apiCall();
                 if (server_items_switcher.IsToggled == false)
                 {
                     
@@ -416,6 +421,38 @@ namespace nat20sDD
                 battle_events_switcher.IsToggled = true;
                 battle_events_switcher.IsEnabled = true;
                 game.battleEventsOn = true;
+            }
+
+            async void apiCall()
+            {
+                List<Item> items = new List<Item>();                
+
+                string url = "http://gamehackathon.azurewebsites.net/api/GetItemsList";
+                string itemListRequest = await PostRequestAsync(url);
+                var result = JObject.Parse(itemListRequest);
+                foreach (var item in result["data"])
+                {
+                    Item i = item.ToObject<Item>();
+                    items.Add(i);
+                }
+
+                game.items = items;
+            }
+
+            async Task<String> PostRequestAsync(string url)
+            {
+                var client = new HttpClient();
+                var values = new Dictionary<string, string>
+            {
+                {"randomItemOption", "1" },
+                {"superItemOption", "0" },
+            };
+
+                var content = new FormUrlEncodedContent(values);
+                var response = await client.PostAsync(url, content);
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                return responseString;
             }
         }
     }
