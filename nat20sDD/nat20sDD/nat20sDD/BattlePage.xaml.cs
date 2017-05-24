@@ -50,7 +50,7 @@ namespace nat20sDD
 
 			var h1Pic = new Image
 			{
-                Source = game.heroes[0].imgUri,
+				Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
 				WidthRequest = 10,
 				HeightRequest = 20,
 				VerticalOptions = LayoutOptions.CenterAndExpand,    
@@ -103,7 +103,7 @@ namespace nat20sDD
 
 			var h2Pic = new Image
 			{
-				Source = game.heroes[1].imgUri,
+				Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
 				WidthRequest = 10,
 				HeightRequest = 20,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -158,7 +158,7 @@ namespace nat20sDD
 
 			var h3Pic = new Image
 			{
-				Source = game.heroes[2].imgUri,
+				Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
 				WidthRequest = 10,
 				HeightRequest = 20,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -211,7 +211,7 @@ namespace nat20sDD
 
 			var h4Pic = new Image
 			{
-				Source = game.heroes[3].imgUri,
+				Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
 				WidthRequest = 20,
 				HeightRequest = 30,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -262,7 +262,7 @@ namespace nat20sDD
 
 			var m1pic = new Image 
 			{
-                Source = game.battle.monsters[0].imgUri,
+				Source = "http://www.publicdomainpictures.net/pictures/160000/velka/blue-monster.jpg",
 				WidthRequest = 20,
 				HeightRequest = 30,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -293,7 +293,7 @@ namespace nat20sDD
 
 			var m2pic = new Image
 			{
-			Source = game.battle.monsters[1].imgUri,
+			Source = "http://www.publicdomainpictures.net/pictures/160000/velka/blue-monster.jpg",
 			WidthRequest = 20,
 			HeightRequest = 30,
 			VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -325,7 +325,7 @@ namespace nat20sDD
 
 			var m3pic = new Image
 			{
-			Source = game.battle.monsters[2].imgUri,
+			Source = "http://www.publicdomainpictures.net/pictures/160000/velka/blue-monster.jpg",
 			WidthRequest = 20,
 			HeightRequest = 30,
 			VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -357,7 +357,7 @@ namespace nat20sDD
 
 			var m4pic = new Image
 			{
-			Source = game.battle.monsters[3].imgUri,
+			Source = "http://www.publicdomainpictures.net/pictures/160000/velka/blue-monster.jpg",
 			WidthRequest = 20,
 			HeightRequest = 30,
 			VerticalOptions = LayoutOptions.CenterAndExpand,

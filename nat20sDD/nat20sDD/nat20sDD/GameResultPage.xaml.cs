@@ -62,25 +62,25 @@ namespace nat20sDD
 
             var charPic1 = new Image
             {
-                Source = game.heroes[0].imgUri,
+                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
                 WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic2 = new Image
             {
-                Source = game.heroes[1].imgUri,
+                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
                 WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic3 = new Image
             {
-                Source = game.heroes[2].imgUri,
+                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
                 WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic4 = new Image
             {
-                Source = game.heroes[3].imgUri,
+                Source = "https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg",
                 WidthRequest = 100,
                 HeightRequest = 100,
             };

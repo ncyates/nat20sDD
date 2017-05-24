@@ -12,15 +12,8 @@ namespace nat20sDD
         public Battle battle;
         int battleCount;
         public int totalScore;
-        public List<string> heroImgs;
-        public List<string> monstImgs;
-         public Game()
+        public Game()
         {
-            heroImgs = new List<string>();
-            heroImgs.Add("https://s-media-cache-ak0.pinimg.com/originals/dd/ac/24/ddac24e8b1291f8f27d9826cb9b54f94.jpg");
-            heroImgs.Add("http://annawrites.com/blog/wp-content/uploads/2012/02/family-guy-267x300.jpg");
-            heroImgs.Add("http://annawrites.com/blog/wp-content/uploads/2012/02/mad-scientist-300x300.jpg");
-            heroImgs.Add("https://img.clipartfest.com/d34754abc7b9f37aa56c16ba207779c0_ra-zombie-character-character-vs-character-clipart_618-464.jpeg");
             heroes = initHeroes();
 			battle = new Battle(heroes);
             utilityOutput(); // to check hero initialization
@@ -35,12 +28,9 @@ namespace nat20sDD
         //function to create heroes team
         public List<Hero> initHeroes()
         {
-            Random imgchoice = new Random();
-
             List<Hero> team = new List<Hero>();
             for(int i = 0; i < NUM_HEROES; i++)
             {
-                int choice = imgchoice.Next(0, 3);
                 Hero h = new Hero();
                 h.setName("Strong dude " + (i+1));
                 h.setHP(100);
@@ -48,7 +38,6 @@ namespace nat20sDD
                 h.setDex(10);
                 h.setDef(10);
                 h.setlvl(1);
-                h.imgUri = heroImgs[choice];
                 team.Add(h);                
             }
             return team;
