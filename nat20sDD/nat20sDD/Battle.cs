@@ -11,14 +11,15 @@ namespace nat20sDD
 		public List<Hero> heroes;
 		public List<Monster> monsters;
 		public List<Item> loot;
+        public Game theGame;
 
 		const int NUM_MONSTERS = 4;
 
-		public Battle(List<Hero> characters)
+		public Battle(List<Hero> characters, Game game)
 		{
 			heroes = characters;
 			monsters = initMonsters();
-
+            theGame = game;
 		}
 
 		// takes strength
@@ -64,7 +65,21 @@ namespace nat20sDD
 					}
 				}
 			}
-			int temp = Roll20();
+
+            int temp = 0;
+            if (theGame.forceCritHit == true)
+            {
+                Console.Out.WriteLine("CriticalHit");
+                temp = 20;
+            } else if(theGame.forceCritMiss == true)
+            {
+                temp = 1;
+            }
+            else
+            {
+                temp = Roll20();
+            }
+			
 			//critical hit
 			if (temp == 20)
 			{

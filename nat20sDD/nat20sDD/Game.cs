@@ -12,6 +12,8 @@ namespace nat20sDD
         public Battle battle;
         int battleCount;
         public int totalScore;
+        public Dictionary<string, bool> settingsMap = new Dictionary<string, bool>();
+        
         public bool debugModeOn = true;
         public bool forceCritHit = false;
         public bool forceCritMiss = false;
@@ -23,15 +25,30 @@ namespace nat20sDD
         public bool randomItemsOn = true;
         public bool superItemsOn = true;
 
+    
 
         public Game()
         {
             heroes = initHeroes();
-			battle = new Battle(heroes);
+			battle = new Battle(heroes,this); // HAAHAH, worst design ever
             utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
+            /*
+            settingsMap.Add("debugModeOn", true);
+            settingsMap.Add("forceCritHit", false);
+            settingsMap.Add("forceCritMiss", false);
+            settingsMap.Add("debugModeOn", true);
+            settingsMap.Add("debugModeOn", true);
+            settingsMap.Add("debugModeOn", true);
+            settingsMap.Add("debugModeOn", true);
+            settingsMap.Add("debugModeOn", true);
+            settingsMap.Add("debugModeOn", true);
+            settingsMap.Add("debugModeOn", true);
+            */
+
             
+
             Console.WriteLine("Heroes fought " + battleCount + " battles.");
             Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
         }
