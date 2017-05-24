@@ -19,6 +19,7 @@ namespace nat20sDD
         public bool magicEnabled = true;
         public bool healingEnabled = true;
         public bool battleEventsOn = true;
+        
 
         public Game()
         {

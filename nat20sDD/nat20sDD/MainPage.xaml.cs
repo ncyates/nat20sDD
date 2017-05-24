@@ -9,7 +9,7 @@ namespace nat20sDD
 {
 	public partial class MainPage : ContentPage
 	{
-		public MainPage()
+		public MainPage(Game game)
 		{
 			//InitializeComponent();
 
@@ -35,14 +35,14 @@ namespace nat20sDD
 
             teamSelectBtn.Clicked += delegate
             {
-				Game game = new Game();
+				//Game game = new Game();
                 Navigation.PushModalAsync(new TeamPage(game));
             };
 
 
             autoPlayBtn.Clicked += delegate
             {
-                Game game = new Game();
+                //Game game = new Game();
                 game.play();
                 Navigation.PushModalAsync(new GameResultPage(game));
                	

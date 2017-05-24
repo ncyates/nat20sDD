@@ -57,7 +57,7 @@ namespace nat20sDD
                 Game game1 = new Game();
 
                 //Navigation.PushModalAsync(new GameResultPage(game1));
-                Navigation.PushModalAsync(new MainPage());
+                Navigation.PushModalAsync(new MainPage(game));
             };
 
             var charPic1 = new Image

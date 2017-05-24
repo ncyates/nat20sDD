@@ -14,7 +14,7 @@ namespace nat20sDD
     {
 
 
-        public SettingsPage()
+        public SettingsPage(Game game)
         {
             InitializeComponent();
 
@@ -45,6 +45,8 @@ namespace nat20sDD
             void random_results_switcher_Toggled(object sender, ToggledEventArgs e)
             {
                 random_results_label.Text = String.Format("Random Results are on: {0}:", e.Value);
+                
+                
             };
 
             Label super_results_label = new Label
@@ -324,14 +326,14 @@ namespace nat20sDD
 
              void turnOffButtons()
             {
-                server_items_switcher.IsToggled = false;
-                server_items_switcher.IsEnabled = false;
+                //server_items_switcher.IsToggled = false;
+                //server_items_switcher.IsEnabled = false;
 
-                random_results_switcher.IsToggled = false;
-                random_results_switcher.IsEnabled = false;
+                //random_results_switcher.IsToggled = false;
+                //random_results_switcher.IsEnabled = false;
 
-                super_results_switcher.IsToggled = false;
-                super_results_switcher.IsEnabled = false;
+                //super_results_switcher.IsToggled = false;
+                //super_results_switcher.IsEnabled = false;
 
                 critical_hit_switcher.IsToggled = false;
                 critical_hit_switcher.IsEnabled = false;

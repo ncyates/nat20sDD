@@ -3,30 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="nat20sDD.SettingsPage">
 
-<!--
-    <ContentPage.Content>
-        <ScrollView>
-            
-            <StackLayout Spacing="0" Padding="0" BackgroundColor="White">
-
-
-                <StackLayout Orientation="Horizontal"  Padding="10">
-                    <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Start">
-                        <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                        <BoxView BackgroundColor="Black" WidthRequest="40" HeightRequest="40"  HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                    </StackLayout>
-                    
-                    <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                        <BoxView BackgroundColor="Maroon" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Center" />
-                        <Label FontSize="14" TextColor="Black" Text="Primary Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                    </StackLayout>
-                    
-                </StackLayout>
-                                
-                
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
--->
-
 </ContentPage>

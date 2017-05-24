@@ -16,15 +16,17 @@ namespace nat20sDD
 
             //MainPage = new nat20sDD.MainPage();
             SetMainPage();
+                 
 		}
 
         public static void SetMainPage()
         {
+            Game game = new Game();
             Current.MainPage = new TabbedPage
             {
                 Children =
                 {
-                    new NavigationPage(new nat20sDD.MainPage())
+                    new NavigationPage(new nat20sDD.MainPage(game))
                     {
                         Title = "Home",
                         Icon = Device.OnPlatform<string>("tab_feed.png",null,null)
@@ -34,7 +36,7 @@ namespace nat20sDD
                         Title = "About",
                         Icon = Device.OnPlatform<string>("tab_about.png",null,null)
                     },
-                    new NavigationPage(new nat20sDD.SettingsPage())
+                    new NavigationPage(new nat20sDD.SettingsPage(game))
                     {
                         Title = "Settings",
                         Icon = Device.OnPlatform<string>("tab_about.png",null,null)
