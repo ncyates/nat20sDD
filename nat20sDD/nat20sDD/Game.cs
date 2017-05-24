@@ -12,6 +12,14 @@ namespace nat20sDD
         public Battle battle;
         int battleCount;
         public int totalScore;
+        public bool debugModeOn = true;
+        public bool forceCritHit = false;
+        public bool forceCritMiss = false;
+        public bool itemUsageOn = false;
+        public bool magicEnabled = true;
+        public bool healingEnabled = true;
+        public bool battleEventsOn = true;
+
         public Game()
         {
             heroes = initHeroes();

@@ -99,27 +99,9 @@ namespace nat20sDD
                     super_results_switcher.IsEnabled = true;
                 }
                 server_items_label.Text = String.Format("Server Items are on: {0}:", e.Value);
-            };
+            };    
 
 
-
-
-
-
-
-            Switch debugswitcher = new Switch
-            {
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.CenterAndExpand
-            };
-            debugswitcher.Toggled += debugswitcher_Toggled;
-
-
-
-            void debugswitcher_Toggled(object sender, ToggledEventArgs e)
-            {
-                debuglabel.Text = String.Format("Debug Mode is on: {0}", e.Value);
-            };
 
 
             Label critical_hit_label = new Label
@@ -259,7 +241,28 @@ namespace nat20sDD
 
 
 
+            Switch debugswitcher = new Switch
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+            debugswitcher.Toggled += debugswitcher_Toggled;
 
+
+
+            void debugswitcher_Toggled(object sender, ToggledEventArgs e)
+            {
+                if (debugswitcher.IsToggled == false)
+                {
+                    //turn everything off
+                    turnOffButtons();
+
+                } else
+                {
+                    turnOnButtons();
+                }
+                debuglabel.Text = String.Format("Debug Mode is on: {0}", e.Value);
+            };
 
 
             // Accomodate iPhone status bar.
@@ -285,21 +288,26 @@ namespace nat20sDD
                 Padding = 0
             };
 
-
+            debugswitcher.IsEnabled = true;
+            debugswitcher.IsToggled = true;
+            turnOnButtons();
+            layout.Children.Add(debugswitcher);
+            layout.Children.Add(debuglabel);
+            
             layout.Children.Add(server_items_switcher);
             layout.Children.Add(server_items_label);            
             layout.Children.Add(random_results_switcher);
             layout.Children.Add(random_results_label);
-            random_results_switcher.IsEnabled = false;
+            
             layout.Children.Add(super_results_switcher);
             layout.Children.Add(super_results_label);
-            super_results_switcher.IsEnabled = false;
-            layout.Children.Add(debugswitcher);
-            layout.Children.Add(debuglabel);
+            
             layout.Children.Add(critical_hit_switcher);
+            critical_hit_switcher.IsToggled = false;
             layout.Children.Add(critical_hit_label);
             layout.Children.Add(critical_miss_switcher);
             layout.Children.Add(critical_miss_label);
+            critical_miss_switcher.IsToggled = false;
             layout.Children.Add(item_use_switcher);
             layout.Children.Add(item_use_label);
             layout.Children.Add(magic_use_switcher);
@@ -313,38 +321,66 @@ namespace nat20sDD
             var scrollView = new ScrollView { Content = layout };
             Content = scrollView;
 
-            /*
-            // Build the page.
-            this.Content = new StackLayout
 
+             void turnOffButtons()
             {
-                Children =
-                {
-                    header,
-                    debugswitcher,
-                    debuglabel,
-                    server_items_switcher,
-                    server_items_label,
-                    random_results_switcher,
-                    random_results_label,
-                    super_results_switcher,
-                    super_results_label,
-                    critical_hit_switcher,
-                    critical_hit_label,
-                    critical_miss_switcher,
-                    critical_miss_label,
-                    item_use_switcher,
-                    item_use_label,
-                    magic_use_switcher,
-                    magic_use_label,
-                    healing_use_switcher,
-                    healing_use_label,
-                    battle_events_switcher,
-                    battle_events_label
-                }
-            };
+                server_items_switcher.IsToggled = false;
+                server_items_switcher.IsEnabled = false;
 
-            */
+                random_results_switcher.IsToggled = false;
+                random_results_switcher.IsEnabled = false;
+
+                super_results_switcher.IsToggled = false;
+                super_results_switcher.IsEnabled = false;
+
+                critical_hit_switcher.IsToggled = false;
+                critical_hit_switcher.IsEnabled = false;
+
+                critical_miss_switcher.IsToggled = false;
+                critical_miss_switcher.IsEnabled = false;
+
+                item_use_switcher.IsToggled = false;
+                item_use_switcher.IsEnabled = false;
+
+                magic_use_switcher.IsToggled = false;
+                magic_use_switcher.IsEnabled = false;
+
+                healing_use_switcher.IsToggled = false;
+                healing_use_switcher.IsEnabled = false;
+
+                battle_events_switcher.IsToggled = false;
+                battle_events_switcher.IsEnabled = false;
+            }
+
+            void turnOnButtons()
+            {
+                server_items_switcher.IsToggled = true;
+                server_items_switcher.IsEnabled = true;
+
+                random_results_switcher.IsToggled = true;
+                random_results_switcher.IsEnabled = true;
+
+                super_results_switcher.IsToggled = true;
+                super_results_switcher.IsEnabled = true;
+
+                
+                critical_hit_switcher.IsEnabled = true;
+
+                
+                critical_miss_switcher.IsEnabled = true;
+
+                item_use_switcher.IsToggled = true;
+                item_use_switcher.IsEnabled = true;
+
+                magic_use_switcher.IsToggled = true;
+                magic_use_switcher.IsEnabled = true;
+
+                healing_use_switcher.IsToggled = true;
+                healing_use_switcher.IsEnabled = true;
+
+                battle_events_switcher.IsToggled = true;
+                battle_events_switcher.IsEnabled = true;
+            }
         }
     }
 }
