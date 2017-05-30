@@ -71,7 +71,7 @@ namespace nat20sDD
 
 			firstBattle.Clicked += delegate
 			{
-				
+                game.prepareNextBattle();
 				Navigation.PushModalAsync(new BattlePage(game));
 				// Navigate to battle page
 				// Navigation.PushModalAsync(new BattlePage(heroes));
@@ -81,7 +81,7 @@ namespace nat20sDD
             autoPlayBtn.Clicked += delegate
             {
                 
-                game.play();
+                game.playAllBattles();
                 Navigation.PushModalAsync(new GameResultPage(game));
             };
 

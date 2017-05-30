@@ -82,7 +82,15 @@ namespace nat20sDD
 
         public void setHP(int h)
         {
-            hp = h;
+            if (h < 0)
+            {
+                hp = 0;
+            }
+            else
+            {
+                hp = h;
+            }
+
         }
         public void setStr(int s)
         {

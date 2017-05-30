@@ -41,7 +41,7 @@ namespace nat20sDD
 			heroes = initHeroes();
 			events = new List<BattleEvent>();
 			items = new List<Item>();
-			battle = new Battle(heroes,this); // HAAHAH, worst design ever
+			//battle = new Battle(heroes,this); // HAAHAH, worst design ever
             utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
@@ -72,9 +72,9 @@ namespace nat20sDD
             return team;
         }
 
-        public void play()
+        public void playOneBattle()
         {
-			battle.events = events;
+            battle.events = events;
 			battle.loot = items;
             battleCount++;
             while(heroTeamLives() && monsterTeamLives(battle.monsters))
@@ -105,6 +105,15 @@ namespace nat20sDD
                         battle.TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(battle.monsters[i], heroes[target]);
                     }
                 }
+            }
+        }
+
+        public void playAllBattles()
+        {
+            while (heroTeamLives())
+            {
+                prepareNextBattle();
+                playOneBattle();
             }
         }
 

@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace nat20sDD
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class GameResultPage : ContentPage
-	{
-		public GameResultPage (Game game)
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class GameResultPage : ContentPage
+    {
+        public GameResultPage(Game game)
+        {
+            InitializeComponent();
             var title = new Label
             {
                 Text = "Game Result Page",
@@ -53,52 +53,52 @@ namespace nat20sDD
 
             newGame.Clicked += delegate
             {
-				Game g = new Game();
-				App.Current.MainPage = new TabbedPage
-				{
-					Children =
-					{
-						new NavigationPage(new nat20sDD.MainPage(g))
-						{
-							Title = "Home",
-							Icon = Device.OnPlatform<string>("tab_feed.png", null, null)
-						},
-						new NavigationPage(new nat20sDD.AboutPage())
-						{
-							Title = "About",
-							Icon = Device.OnPlatform<string>("tab_about.png", null, null)
-						},
-						new NavigationPage(new nat20sDD.SettingsPage(g))
-						{
-							Title = "Settings",
-							Icon = Device.OnPlatform<string>("tab_about.png", null, null)
-						},
-					}
-				};
-			};
+                Game g = new Game();
+                App.Current.MainPage = new TabbedPage
+                {
+                    Children =
+                    {
+                        new NavigationPage(new nat20sDD.MainPage(g))
+                        {
+                            Title = "Home",
+                            Icon = Device.OnPlatform<string>("tab_feed.png", null, null)
+                        },
+                        new NavigationPage(new nat20sDD.AboutPage())
+                        {
+                            Title = "About",
+                            Icon = Device.OnPlatform<string>("tab_about.png", null, null)
+                        },
+                        new NavigationPage(new nat20sDD.SettingsPage(g))
+                        {
+                            Title = "Settings",
+                            Icon = Device.OnPlatform<string>("tab_about.png", null, null)
+                        },
+                    }
+                };
+            };
 
             var charPic1 = new Image
             {
                 Source = game.heroes[0].imgUri,
-				WidthRequest = 100,
+                WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic2 = new Image
             {
                 Source = game.heroes[1].imgUri,
-				WidthRequest = 100,
+                WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic3 = new Image
             {
                 Source = game.heroes[2].imgUri,
-				WidthRequest = 100,
+                WidthRequest = 100,
                 HeightRequest = 100,
             };
             var charPic4 = new Image
             {
                 Source = game.heroes[3].imgUri,
-				WidthRequest = 100,
+                WidthRequest = 100,
                 HeightRequest = 100,
             };
 
@@ -128,6 +128,12 @@ namespace nat20sDD
                 Spacing = 20,
                 Children = { title, gameScore, grid, newGame }
             };
+
         }
-	}
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Navigation.PopModalAsync();
+        }
+    }
 }

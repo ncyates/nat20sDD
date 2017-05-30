@@ -47,12 +47,19 @@ namespace nat20sDD
             };
 
             var nextBattle = new Button { Text = "Next Battle" };
-
             nextBattle.Clicked += delegate
             {
-                game.prepareNextBattle();
-                game.play();
+                game.prepareNextBattle(); 
+                game.playOneBattle(); //comment out for preview of battle before each one
                 Navigation.PushModalAsync(new BattlePage(game));
+            };
+
+            var playAll = new Button { Text = "Play Till Dead" };
+            playAll.Clicked += delegate
+            {
+                game.playAllBattles();
+                DisplayAlert("Game Over!", "Your heroes have been killed.", "OK");
+                Navigation.PushModalAsync(new GameResultPage(game));
             };
 
             var charPic1 = new Image
@@ -107,8 +114,14 @@ namespace nat20sDD
             {
                 Padding = 30,
                 Spacing = 20,
-                Children = { title, gameScore, grid, nextBattle, battleActionList }
+                Children = { title, gameScore, grid, nextBattle, playAll, battleActionList }
             };
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Navigation.PopModalAsync();
         }
     }
 }
