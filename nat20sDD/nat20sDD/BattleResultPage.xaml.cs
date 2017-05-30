@@ -50,6 +50,7 @@ namespace nat20sDD
 
             nextBattle.Clicked += delegate
             {
+                game.prepareNextBattle();
                 game.play();
                 Navigation.PushModalAsync(new BattlePage(game));
             };
