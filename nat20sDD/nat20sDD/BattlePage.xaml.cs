@@ -465,6 +465,11 @@ namespace nat20sDD
 				battle.Children.Add(resultsButton);
 			}
 
+            ListView battleActionList = new ListView
+            {
+                ItemsSource = game.battle.battleActions
+            };
+            battle.Children.Add(battleActionList);
 			Content = battle;
 		}
 
