@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
 
 namespace nat20sDD
 {
@@ -38,22 +44,77 @@ namespace nat20sDD
 			heroImgs.Add("http://annawrites.com/blog/wp-content/uploads/2012/02/family-guy-267x300.jpg");
 			heroImgs.Add("http://annawrites.com/blog/wp-content/uploads/2012/02/mad-scientist-300x300.jpg");
 			heroImgs.Add("https://img.clipartfest.com/d34754abc7b9f37aa56c16ba207779c0_ra-zombie-character-character-vs-character-clipart_618-464.jpeg");
-			heroes = initHeroes();
+			
 			events = new List<BattleEvent>();
 			items = new List<Item>();
-			battle = new Battle(heroes,this); // HAAHAH, worst design ever
-            utilityOutput(); // to check hero initialization
+			
+            //utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
+            initItems();
+            heroes = initHeroes();
+            battle = new Battle(heroes, this);
+            // List<Item> items = new List<Item>();
+            // List<BattleEvent> events = new List<BattleEvent>();
 
-            Console.WriteLine("Heroes fought " + battleCount + " battles.");
-            Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
+
+            //Console.WriteLine("Heroes fought " + battleCount + " battles.");
+            //Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
+        }
+
+        public async void initItems()
+        {
+            //List<Item> items = new List<Item>();
+            string url = "http://gamehackathon.azurewebsites.net/api/GetItemsList";
+            string itemListRequest = await PostRequestAsync(url);
+            var result = JObject.Parse(itemListRequest);
+            foreach (var item in result["data"])
+            {
+                Item i = item.ToObject<Item>();
+                items.Add(i);
+            }
+            //return items;
+        }
+
+        public async Task<List<BattleEvent>> initEvents()
+        {
+            List<BattleEvent> events = new List<BattleEvent>();
+            string url = "http://gamehackathon.azurewebsites.net/api/GetItemsList";
+            url = "http://gamehackathon.azurewebsites.net/api/GetBattleEffects";
+            string eventListRequest = await PostRequestAsync(url);
+            var result = JObject.Parse(eventListRequest);
+            foreach (var battleEvent in result["data"])
+            {
+                BattleEvent e = battleEvent.ToObject<BattleEvent>();
+                this.events.Add(e);
+            }  
+            return events;
+        }
+
+
+        private async Task<String> PostRequestAsync(string url)
+        {
+            var client = new HttpClient();
+            var values = new Dictionary<string, string>
+            {
+                {"randomItemOption", "1" },
+                {"superItemOption", "0" },
+            };
+
+            var content = new FormUrlEncodedContent(values);
+            var response = await client.PostAsync(url, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            return responseString;
         }
 
 
         //function to create heroes team
         public List<Hero> initHeroes()
         {
+            int serverItemCount = items.Count;
+            int herosServerItemShare = serverItemCount / 4;
+            int serverItemIndex = 0;
 			Random imgchoice = new Random();
 			List<Hero> team = new List<Hero>();
             for(int i = 0; i < NUM_HEROES; i++)
@@ -67,6 +128,13 @@ namespace nat20sDD
                 h.setDef(10);
                 h.setlvl(1);
 				h.imgUri = heroImgs[choice];
+                for(int j = 0; j < herosServerItemShare; j++)
+                {
+                    Item temp = items[j + serverItemIndex];
+                    Console.Out.WriteLine(h.getName() + " picked up " + temp.name);
+                    h.pickUp(temp);
+                }
+                serverItemIndex += herosServerItemShare;
 				team.Add(h);                
             }
             return team;

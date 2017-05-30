@@ -75,7 +75,7 @@ namespace nat20sDD
             {
                 if (e.target == "ALL")
                 {
-                    foreach (Hero h in heroes)
+                    foreach (Hero h in theGame.heroes)
                     {
                         if (e.attribmod == "STRENGTH")
                         {
@@ -196,7 +196,7 @@ namespace nat20sDD
                         }
                         else
                         {
-                            foreach (Hero h in heroes)
+                            foreach (Hero h in theGame.heroes)
                             {
                                 h.setHP(h.getHP() - damage);
                                 Console.WriteLine(a.getName() + " did a Critical Hit for " + damage + " points of magic damage to all heroes!");
@@ -275,7 +275,7 @@ namespace nat20sDD
                             }
                             else
                             {
-                                foreach (Hero h in heroes)
+                                foreach (Hero h in theGame.heroes)
                                 {
                                     h.setHP(h.getHP() - damage);
                                 }

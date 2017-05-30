@@ -25,7 +25,7 @@ namespace nat20sDD
 			};
 
 			h1name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[0]));
+				Navigation.PushModalAsync(new CharPage(game.heroes[0],game));
 			};
 
 			var h1lvl = new Label {
@@ -75,7 +75,7 @@ namespace nat20sDD
 				HeightRequest = 40,
 			};
 			h2name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[1]));
+				Navigation.PushModalAsync(new CharPage(game.heroes[1],game));
 			};
 
 
@@ -130,7 +130,7 @@ namespace nat20sDD
 			};
 
 			h3name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[2]));
+				Navigation.PushModalAsync(new CharPage(game.heroes[2],game));
 			};
 
 
@@ -184,7 +184,7 @@ namespace nat20sDD
 				HeightRequest = 40,
 			};
 			h4name.Clicked += delegate {
-				Navigation.PushModalAsync(new CharPage(game.heroes[3]));
+				Navigation.PushModalAsync(new CharPage(game.heroes[3],game));
 			};
 
 			var h4lvl = new Label
@@ -464,6 +464,12 @@ namespace nat20sDD
 				battle.Children.Add(runButton);
 				battle.Children.Add(resultsButton);
 			}
+
+
+
+
+
+
 
             ListView battleActionList = new ListView
             {
