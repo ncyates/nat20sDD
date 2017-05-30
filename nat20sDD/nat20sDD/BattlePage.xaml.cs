@@ -413,12 +413,12 @@ namespace nat20sDD
 
 				var resultButton = new Button
 				{ 
-					Text = "Show Results",
+					Text = "Show Battle Results",
 				};
 
 				resultButton.Clicked += delegate
 				{
-					Navigation.PushModalAsync(new GameResultPage(game));
+					Navigation.PushModalAsync(new BattleResultPage(game));
 				};
 				battle.Children.Add(resultButton);
 			}
@@ -465,14 +465,7 @@ namespace nat20sDD
 				battle.Children.Add(resultsButton);
 			}
 
-            ListView battleActionList = new ListView
-            {
-                ItemsSource = game.battle.battleActions
-            };
-            battle.Children.Add(battleActionList);
-			Content = battle;
+            Content = battle;
 		}
-
-
 	}
 }
