@@ -41,7 +41,7 @@ namespace nat20sDD
 			heroes = initHeroes();
 			events = new List<BattleEvent>();
 			items = new List<Item>();
-			battle = new Battle(heroes,this); // HAAHAH, worst design ever
+			//battle = new Battle(heroes,this); // HAAHAH, worst design ever
             utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
@@ -72,40 +72,55 @@ namespace nat20sDD
             return team;
         }
 
-        public void play()
+        public void playOneBattle()
         {
-				battle.events = events;
-				battle.loot = items;
-                battleCount++;
-                while(heroTeamLives() && monsterTeamLives(battle.monsters))
+            battle.events = events;
+			battle.loot = items;
+            battleCount++;
+            while(heroTeamLives() && monsterTeamLives(battle.monsters))
+            {
+                for (int i = 0; i < NUM_HEROES; i++)
                 {
-                    for (int i = 0; i < NUM_HEROES; i++)
+                    if (!heroes[i].isDead())
                     {
-                        if (!heroes[i].isDead())
+                        int target = findTargetMonster(battle.monsters);
+                        if (target == -1)
                         {
-                            int target = findTargetMonster(battle.monsters);
-                            if (target == -1)
-                            {
-                                Console.WriteLine("\n\n\nAll the monsters are dead!");
-                                sumScores();
-                                Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
-                                break;
-                            }
-                            battle.TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(heroes[i], battle.monsters[target]);
+                            Console.WriteLine("\n\n\nAll the monsters are dead!");
+                            sumScores();
+                            Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
+                            break;
                         }
-                        if (!battle.monsters[i].isDead())
-                        {
-                            int target = findTargetHero();
-                            if (target == -1)
-                            {
-                                Console.WriteLine("n\n\nAll the heroes are dead.");
-                                sumScores();
-                                break;
-                            }
-                            battle.TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(battle.monsters[i], heroes[target]);
-                        }
+                        battle.TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(heroes[i], battle.monsters[target]);
                     }
+                    if (!battle.monsters[i].isDead())
+                    {
+                        int target = findTargetHero();
+                        if (target == -1)
+                        {
+                            Console.WriteLine("n\n\nAll the heroes are dead.");
+                            sumScores();
+                            break;
+                        }
+                        battle.TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(battle.monsters[i], heroes[target]);
+                    }
+                }
             }
+        }
+
+        public void playAllBattles()
+        {
+            while (heroTeamLives())
+            {
+                prepareNextBattle();
+                playOneBattle();
+            }
+        }
+
+        public void prepareNextBattle()
+        {
+            //events = new List<BattleEvent>();
+            battle = new Battle(heroes, this);
         }
 
         public void utilityOutput()

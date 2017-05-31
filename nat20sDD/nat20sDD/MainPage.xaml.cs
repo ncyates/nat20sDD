@@ -90,8 +90,8 @@ namespace nat20sDD
 
 				game.items = items;
 				game.events = events;
-				game.play();
-                Navigation.PushModalAsync(new GameResultPage(game));
+                game.playAllBattles();
+                await Navigation.PushModalAsync(new GameResultPage(game));
                	
             };
 

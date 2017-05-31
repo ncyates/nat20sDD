@@ -399,80 +399,59 @@ namespace nat20sDD
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
-			int d = 0;
-			foreach (Monster monster in game.battle.monsters)
-			{
-				if (monster.isDead())
-				{
-					d++;
-				}
-			}
-			if (d == 4)
-			{
-				DisplayAlert("Victory!", "You have slain all the monsters.", "OK");
-
-				var resultButton = new Button
-				{ 
-					Text = "Show Results",
-				};
-
-				resultButton.Clicked += delegate
-				{
-					Navigation.PushModalAsync(new GameResultPage(game));
-				};
-				battle.Children.Add(resultButton);
-			}
-			else
-			{
-				var runButton = new Button
-				{
-					Text = "Run Battle Sequence",
-				};
-
-				runButton.Clicked += delegate
-				{
-					game.play();
-					Navigation.PushModalAsync(new BattlePage(game));
-				};
-
-				var resultsButton = new Button
-				{
-					Text = "Skip to Results",
-				};
-
-				resultsButton.Clicked += delegate {
-					game.play();
-					int dead = 0;
-					foreach (Hero hero in game.heroes)
-					{
-						if (hero.isDead())
-						{
-							dead++;
-						}
-					}
-					if (dead == 4)
-					{
-						DisplayAlert("Game Over!", "Your heroes have been killed.", "OK");
-					}
-					else
-					{
-						DisplayAlert("Victory!", "You have slain all the monsters.", "OK");
-					}
-					Navigation.PushModalAsync(new GameResultPage(game));
-				};
-
-				battle.Children.Add(runButton);
-				battle.Children.Add(resultsButton);
-			}
-
-            ListView battleActionList = new ListView
+            //if hero team lives
+            if (game.heroTeamLives())
             {
-                ItemsSource = game.battle.battleActions
-            };
-            battle.Children.Add(battleActionList);
-			Content = battle;
+                //if all monsters dead
+                if (!game.monsterTeamLives(game.battle.monsters))
+                {
+                    DisplayAlert("Victory!", "You have slain all the monsters.", "OK");
+
+                    var resultButton = new Button { Text = "Show Battle Results" };
+                    resultButton.Clicked += delegate
+                    {
+                        Navigation.PushModalAsync(new BattleResultPage(game));
+                    };
+
+                    battle.Children.Add(resultButton);
+                }
+                else // battle is unfinished
+                {
+                    var runButton = new Button{ Text = "Run Battle Sequence" };
+                    runButton.Clicked += delegate
+                    {
+                        game.prepareNextBattle();
+                        game.playOneBattle();
+                        Navigation.PushModalAsync(new BattlePage(game));
+                    };
+
+                    var resultsButton = new Button
+                    {
+                        Text = "Skip to End Results",
+                    };
+
+                    resultsButton.Clicked += delegate {
+                        game.playAllBattles();
+                        DisplayAlert("Game Over!", "Your heroes have been killed.", "OK");
+                        Navigation.PushModalAsync(new GameResultPage(game));
+                    };
+
+                    battle.Children.Add(runButton);
+                    battle.Children.Add(resultsButton);
+                }
+            }
+            else //hero team all dead
+            {
+                DisplayAlert("Game Over!", "Your heroes have been killed.", "OK");
+                Navigation.PushModalAsync(new GameResultPage(game));
+            }
+
+            Content = battle;
 		}
-
-
-	}
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Navigation.PopModalAsync();
+        }
+    }
 }

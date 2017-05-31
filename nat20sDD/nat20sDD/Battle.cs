@@ -217,7 +217,7 @@ namespace nat20sDD
                 {
                     a.setScore((a.getScore() + points));
                     Console.WriteLine(a.getName() + " scored " + points + " points!");
-                    battleActions.Add(a.getName() + " scored " + points + " points!");
+                    //battleActions.Add(a.getName() + " scored " + points + " points!");
                 }
             }
             //regular roll
@@ -296,7 +296,7 @@ namespace nat20sDD
                     {
                         a.setScore((a.getScore() + points));
                         Console.WriteLine(a.getName() + " scored " + points + " points");
-                        battleActions.Add(a.getName() + " scored " + points + " points");
+                        //battleActions.Add(a.getName() + " scored " + points + " points");
                     }
                 }
                 else
@@ -308,8 +308,8 @@ namespace nat20sDD
             //crit miss
             else
             {
-                Console.WriteLine(a.getName() + "Critically Missed!");
-                battleActions.Add(a.getName() + "Critically Missed!");
+                Console.WriteLine(a.getName() + " Critically Missed!");
+                battleActions.Add(a.getName() + " Critically Missed!");
                 //Drops random item from the attacker's inventory
                 if (a.inventory.Count > 0)
                 {
