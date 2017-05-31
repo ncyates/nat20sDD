@@ -7,9 +7,9 @@ namespace nat20sDD
 {
     public class Monster :Unit
     {
-        //additional fields
         private int pointVal;
         private int difficulty;
+
         public Monster() : base()
         {
             isGood = false;

@@ -45,7 +45,6 @@ namespace nat20sDD
 			{
 				Placeholder = "HP",
 				Text = game.heroes[hero].getHP().ToString()
-                //Text = "HP: " + game.heroes[hero].getHP().ToString()
             };
 
             var strLabel = new Label
@@ -58,7 +57,6 @@ namespace nat20sDD
 			{
 				Placeholder = "Strength",
 				Text = game.heroes[hero].getStr().ToString()
-                //Text = "Strength: " + game.heroes[hero].getStr().ToString()
             };
 
             var spdLabel = new Label

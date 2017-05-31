@@ -18,7 +18,7 @@ namespace nat20sDD
 				FontAttributes = FontAttributes.Bold,
 			};
 
-			//HERO 1
+			//Hero 1
 			var h1name = new Button {
 				Text = game.heroes[0].getName(),
 				HeightRequest = 40,
@@ -68,7 +68,7 @@ namespace nat20sDD
                 //HorizontalOptions = LayoutOptions.CenterAndExpand,
             };
 
-			// HERO 2
+			// Hero 2
 			var h2name = new Button
 			{
 				Text = game.heroes[1].getName(),
