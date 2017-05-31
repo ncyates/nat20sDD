@@ -6,10 +6,8 @@ namespace nat20sDD
 {
     public class Hero : Unit
     {
-        //additional fields
         private int lvl;
         private int exp;
-        //private int score;
 
         public Hero() : base()
         {

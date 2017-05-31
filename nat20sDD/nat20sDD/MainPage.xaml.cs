@@ -61,6 +61,15 @@ namespace nat20sDD
 
 				game.items = items;
 				game.events = events;
+
+				foreach (Hero hero in game.heroes)
+				{
+					Random itemChoice = new Random();
+					Item item = items[itemChoice.Next(0, items.Count - 1)];
+					hero.pickUp(item);
+				}
+
+
 				await Navigation.PushModalAsync(new TeamPage(game));
             };
 
@@ -90,7 +99,15 @@ namespace nat20sDD
 
 				game.items = items;
 				game.events = events;
-                game.playAllBattles();
+
+				foreach (Hero hero in game.heroes)
+				{
+					Random itemChoice = new Random();
+					Item item = items[itemChoice.Next(0, items.Count - 1)];
+					hero.pickUp(item);
+				}
+
+				game.playAllBattles();
                 await Navigation.PushModalAsync(new GameResultPage(game));
                	
             };

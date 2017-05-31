@@ -49,7 +49,14 @@ namespace nat20sDD
                 Text = game.heroes[3].getName().ToString() + ": " + game.heroes[3].getScore().ToString()
             };
 
-            var newGame = new Button { Text = "Return Home" };
+			var battles = new Label
+			{
+				Text = "Number of battles: " + game.battleCount,
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+			};
+
+			var newGame = new Button { Text = "Return Home" };
 
             newGame.Clicked += delegate
             {
@@ -120,13 +127,16 @@ namespace nat20sDD
             grid.Children.Add(hero3Score, 2, 1);
             grid.Children.Add(hero4Score, 3, 1);
 
+			ListView battleActionList = new ListView
+			{
+				ItemsSource = game.battle.battleActions,
+			};
 
-
-            Content = new StackLayout
+			Content = new StackLayout
             {
                 Padding = 30,
                 Spacing = 20,
-                Children = { title, gameScore, grid, newGame }
+                Children = { title, gameScore, battles, grid, battleActionList, newGame }
             };
 
         }

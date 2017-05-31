@@ -7,8 +7,6 @@ namespace nat20sDD
 {
     public class Battle
     {
-
-
 		public List<Hero> heroes;
 		public List<Monster> monsters;
 		public List<Item> loot;
@@ -29,6 +27,12 @@ namespace nat20sDD
 			heroes = characters;
 			this.events = game.events;
 			monsters = initMonsters();
+			foreach (Monster monster in monsters)
+			{
+				Random itemChoice = new Random();
+				Item item = game.items[itemChoice.Next(0, game.items.Count - 1)];
+				monster.pickUp(item);
+			}
 			theGame = game;
 		}
 
@@ -70,7 +74,8 @@ namespace nat20sDD
         {
             Random random = new Random();
             BattleEvent e = events[random.Next(0, events.Count - 1)];
-            int value = e.tier;
+			battleActions.Add("Battle Event: " + e.name +  " (" + e.tier + " " + e.target + " " + e.attribmod + ")");
+			int value = e.tier;
             if (value != 0)
             {
                 if (e.target == "ALL")
@@ -118,6 +123,18 @@ namespace nat20sDD
 
         }
 
+		private void lootItems(Unit a, Unit d)
+		{
+			if (d.isDead() && a.isGood)
+			{
+				foreach (Item i in d.inventory)
+				{
+					a.pickUp(i);
+					battleActions.Add(a.getName() + " pick up an item: " + i.name);
+				}
+			}
+		}
+
         public void TheAttackingCharacterAttemptsToAttackTheDefendingCharacterDuringABattleSequence(Unit a, Unit d)
         {
             if (theGame.battleEventsOn == true)
@@ -131,8 +148,6 @@ namespace nat20sDD
             int temp = 0;
             if (theGame.forceCritHit == true)
             {
-                Console.Out.WriteLine("CriticalHit");
-                battleActions.Add("CriticalHit");
                 temp = 20;
             }
             else if (theGame.forceCritMiss == true)
@@ -161,8 +176,8 @@ namespace nat20sDD
                         if (item.usage == 0) { a.inventory.Remove(item); }
                         damage = RollForDamage(a.getStr()) * 2;
                         d.setHP(d.getHP() - damage);
-                        Console.WriteLine(a.getName() + " did a Critical Hit for " + damage + " points of damage to " + d.getName() + "!");
-                        battleActions.Add(a.getName() + " did a Critical Hit for " + damage + " points of damage to " + d.getName() + "!");
+						lootItems(a, d);
+						battleActions.Add(a.getName() + " did a Critical Hit for " + damage + " points of damage to " + d.getName() + "!");
                         break;
                     }
                     // magic (single unit)                    
@@ -174,7 +189,7 @@ namespace nat20sDD
                         if (item.usage == 0) { a.inventory.Remove(item); }
                         damage = item.tier * 2;
                         d.setHP(d.getHP() - damage);
-                        Console.WriteLine(a.getName() + " did a Critical Hit for " + damage + " points of magic damage to " + d.getName() + "!");
+						lootItems(a, d);
                         battleActions.Add(a.getName() + " did a Critical Hit for " + damage + " points of magic damage to " + d.getName() + "!");
                         break;
                     }
@@ -190,7 +205,6 @@ namespace nat20sDD
                             foreach (Monster m in monsters)
                             {
                                 m.setHP(m.getHP() - damage);
-                                Console.WriteLine(a.getName() + " did a Critical Hit for " + damage + " points of magic damage to all monsters!");
                                 battleActions.Add(a.getName() + " did a Critical Hit for " + damage + " points of magic damage to all monsters!");
                             }
                         }
@@ -199,7 +213,6 @@ namespace nat20sDD
                             foreach (Hero h in heroes)
                             {
                                 h.setHP(h.getHP() - damage);
-                                Console.WriteLine(a.getName() + " did a Critical Hit for " + damage + " points of magic damage to all heroes!");
                                 battleActions.Add(a.getName() + " did a Critical Hit for " + damage + " points of magic damage to all heroes!");
                             }
                         }
@@ -209,15 +222,14 @@ namespace nat20sDD
                 if (!offensive)
                 {
                     d.setHP(d.getHP() - damage);
-                    Console.WriteLine(a.getName() + " hit with their fists for " + damage + " points of damage to " + d.getName());
-                    battleActions.Add(a.getName() + " hit with their fists for " + damage + " points of damage to " + d.getName());
+					lootItems(a, d);
+					battleActions.Add(a.getName() + " hit with their fists for " + damage + " points of damage to " + d.getName());
                 }
                 int points = damage * 100;
                 if (a.isGood)
                 {
                     a.setScore((a.getScore() + points));
-                    Console.WriteLine(a.getName() + " scored " + points + " points!");
-                    //battleActions.Add(a.getName() + " scored " + points + " points!");
+                    battleActions.Add(a.getName() + " scored " + points + " points!");
                 }
             }
             //regular roll
@@ -240,8 +252,8 @@ namespace nat20sDD
                             if (item.usage == 0) { a.inventory.Remove(item); }
                             damage = RollForDamage(a.getStr()) * 2;
                             d.setHP(d.getHP() - damage);
-                            Console.WriteLine(a.getName() + " hit for " + damage + " points of damage to " + d.getName());
-                            battleActions.Add(a.getName() + " hit for " + damage + " points of damage to " + d.getName());
+							lootItems(a, d);
+							battleActions.Add(a.getName() + " hit for " + damage + " points of damage to " + d.getName());
                             break;
                         }
                         // magic (single unit)
@@ -253,8 +265,8 @@ namespace nat20sDD
                             if (item.usage == 0) { a.inventory.Remove(item); }
                             damage = item.tier * 2;
                             d.setHP(d.getHP() - damage);
-                            Console.WriteLine(a.getName() + " hit for " + damage + " points of magic damage to " + d.getName());
-                            battleActions.Add(a.getName() + " hit for " + damage + " points of magic damage to " + d.getName());
+							lootItems(a, d);
+							battleActions.Add(a.getName() + " hit for " + damage + " points of magic damage to " + d.getName());
                             break;
                         }
                         // magic (all units)
@@ -269,8 +281,8 @@ namespace nat20sDD
                                 foreach (Monster m in monsters)
                                 {
                                     m.setHP(m.getHP() - damage);
-                                }
-                                Console.WriteLine(a.getName() + " hit for " + damage + " points of magic damage to all enemies");
+									lootItems(a, d);
+								}
                                 battleActions.Add(a.getName() + " hit for " + damage + " points of magic damage to all enemies");
                             }
                             else
@@ -278,8 +290,8 @@ namespace nat20sDD
                                 foreach (Hero h in heroes)
                                 {
                                     h.setHP(h.getHP() - damage);
-                                }
-                                Console.WriteLine(a.getName() + " hit for " + damage + " points of damage to all heroes");
+									lootItems(a, d);
+								}
                                 battleActions.Add(a.getName() + " hit for " + damage + " points of damage to all heroes");
                             }
                             break;
@@ -288,27 +300,24 @@ namespace nat20sDD
                     if (!offensive)
                     {
                         d.setHP(d.getHP() - damage);
-                        Console.WriteLine(a.getName() + " hit with their fists for " + damage + " points of damage to " + d.getName());
-                        battleActions.Add(a.getName() + " hit with their fists for " + damage + " points of damage to " + d.getName());
+						lootItems(a, d);
+						battleActions.Add(a.getName() + " hit with their fists for " + damage + " points of damage to " + d.getName());
                     }
                     int points = damage * 100;
                     if (a.isGood)
                     {
                         a.setScore((a.getScore() + points));
-                        Console.WriteLine(a.getName() + " scored " + points + " points");
-                        //battleActions.Add(a.getName() + " scored " + points + " points");
+                        battleActions.Add(a.getName() + " scored " + points + " points");
                     }
                 }
                 else
                 {
-                    Console.WriteLine(a.getName() + " Missed");
                     battleActions.Add(a.getName() + " Missed");
                 }
             }
             //crit miss
             else
             {
-                Console.WriteLine(a.getName() + " Critically Missed!");
                 battleActions.Add(a.getName() + " Critically Missed!");
                 //Drops random item from the attacker's inventory
                 if (a.inventory.Count > 0)

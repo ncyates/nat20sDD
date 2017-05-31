@@ -6,7 +6,6 @@ namespace nat20sDD
 {
     public class Game
     {
-
         public List<Hero> heroes;
 		public List<BattleEvent> events;
 		public List<Item> items;
@@ -14,7 +13,7 @@ namespace nat20sDD
 		public List<string> monstImgs;
 		const int NUM_HEROES = 4;
         public Battle battle;
-        int battleCount;
+        public int battleCount;
         public int totalScore;
         public Dictionary<string, bool> settingsMap = new Dictionary<string, bool>();
         
@@ -41,13 +40,8 @@ namespace nat20sDD
 			heroes = initHeroes();
 			events = new List<BattleEvent>();
 			items = new List<Item>();
-			//battle = new Battle(heroes,this); // HAAHAH, worst design ever
-            utilityOutput(); // to check hero initialization
             battleCount = 0;
             totalScore = 0;
-
-            Console.WriteLine("Heroes fought " + battleCount + " battles.");
-            Console.WriteLine("The Heroes scored " + totalScore + " points!\n\n");
         }
 
 
@@ -123,14 +117,6 @@ namespace nat20sDD
             battle = new Battle(heroes, this);
         }
 
-        public void utilityOutput()
-        {
-            for(int i = 0; i < this.heroes.Count; i++)
-            {
-                Console.WriteLine(this.heroes[i].getName());
-            }
-        }
-
         public bool heroTeamLives()
         {
             int numAlive = NUM_HEROES;
@@ -201,9 +187,7 @@ namespace nat20sDD
                 totalScore += h.getScore();
             }
         }
-        
-
-
+       
         public int RollRange(int low, int high)
         {
             Random random = new Random();

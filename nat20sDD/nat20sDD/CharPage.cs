@@ -7,9 +7,6 @@ namespace nat20sDD
 {
     class CharPage : ContentPage
     {
-
-
-
         public CharPage(Hero C)
         {
 

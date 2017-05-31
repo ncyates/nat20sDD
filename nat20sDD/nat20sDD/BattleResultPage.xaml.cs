@@ -24,7 +24,7 @@ namespace nat20sDD
 
             var gameScore = new Label
             {
-                Text = "Game Score so far: " + game.totalScore.ToString(),
+                Text = "Game Score: " + game.totalScore.ToString(),
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
             };
@@ -50,7 +50,6 @@ namespace nat20sDD
             nextBattle.Clicked += delegate
             {
                 game.prepareNextBattle(); 
-                game.playOneBattle(); //comment out for preview of battle before each one
                 Navigation.PushModalAsync(new BattlePage(game));
             };
 

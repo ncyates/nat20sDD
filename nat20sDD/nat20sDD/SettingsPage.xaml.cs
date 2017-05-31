@@ -283,24 +283,6 @@ namespace nat20sDD
                 debuglabel.Text = String.Format("Debug Mode is on: {0}", e.Value);
             };
 
-
-            // Accomodate iPhone status bar.
-            //this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
-
-            /* doesn't work?
-            var scroll = new ScrollView();
-            Content = scroll;
-            var stack = new StackLayout();
-            stack.Children.Add(header);
-            stack.Children.Add(debugswitcher);
-            stack.Children.Add(debuglabel);
-            stack.Children.Add(server_items_switcher);
-            stack.Children.Add(server_items_label);
-            stack.Children.Add(random_results_switcher);
-            stack.Children.Add(random_results_label);
-              */
-
-
             var layout = new StackLayout
             {
                 Orientation = StackOrientation.Vertical,
@@ -352,15 +334,6 @@ namespace nat20sDD
 
              void turnOffButtons()
             {
-                //server_items_switcher.IsToggled = false;
-                //server_items_switcher.IsEnabled = false;
-
-                //random_results_switcher.IsToggled = false;
-                //random_results_switcher.IsEnabled = false;
-
-                //super_results_switcher.IsToggled = false;
-                //super_results_switcher.IsEnabled = false;
-
                 critical_hit_switcher.IsToggled = false;
                 critical_hit_switcher.IsEnabled = false;
                 game.forceCritHit = false;
